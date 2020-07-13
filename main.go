@@ -12,14 +12,17 @@ import (
 
 func main() {
 	println("test")
-	imageLookup()
+	if err := imageLookup(); err != nil {
+		println(err)
+	}
 }
 
 // test product type/version aggregation from pod image lookup
 func imageLookup() (retErr error) {
-	images := []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
+	images := []string{"quay.io/crio/redis:alpine", "quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
 	sys := &imagetypes.SystemContext{
-		OSChoice: "linux",
+		OSChoice:                    "linux",
+		SystemRegistriesConfDirPath: "/etc/containers",
 	}
 	imagesCount := uniqueCount(images)
 	for img, num := range imagesCount {
@@ -53,7 +56,7 @@ func imageLookup() (retErr error) {
 		}
 	}
 	fmt.Println()
-	return nil
+	return retErr
 }
 
 func parseImageSource(ctx context.Context, sys *imagetypes.SystemContext, name string) (imagetypes.ImageSource, error) {
