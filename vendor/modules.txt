@@ -61,20 +61,6 @@ github.com/containers/image/transports
 github.com/containers/image/transports/alltransports
 github.com/containers/image/types
 github.com/containers/image/version
-# github.com/containers/image/v5 v5.5.1
-github.com/containers/image/v5/docker/reference
-github.com/containers/image/v5/internal/pkg/platform
-github.com/containers/image/v5/manifest
-github.com/containers/image/v5/pkg/compression
-github.com/containers/image/v5/pkg/compression/internal
-github.com/containers/image/v5/pkg/compression/types
-github.com/containers/image/v5/pkg/strslice
-github.com/containers/image/v5/transports
-github.com/containers/image/v5/types
-# github.com/containers/libtrust v0.0.0-20190913040956-14b96171aa3b
-github.com/containers/libtrust
-# github.com/containers/ocicrypt v1.0.2
-github.com/containers/ocicrypt/spec
 # github.com/containers/storage v1.20.2
 github.com/containers/storage
 github.com/containers/storage/drivers
