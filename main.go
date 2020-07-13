@@ -17,6 +17,7 @@ import (
 
 func main() {
 	var debug bool
+	debug = true
 	println("test")
 	logrus.SetLevel(logrus.ErrorLevel)
 	if !debug {
@@ -30,20 +31,17 @@ func main() {
 // test product type/version aggregation from pod image lookup
 func imageLookup() (retErr error) {
 	images := []string{"quay.io/crio/redis:alpine", "quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
-	imgCtx := &types.SystemContext{
-		OSChoice: "linux",
-	}
 	ctx := context.Background()
 	var cancel context.CancelFunc = func() {}
 	ctx, cancel = context.WithTimeout(ctx, time.Duration(10)*time.Second)
 	defer cancel()
-
 	storeOptions, err := storage.DefaultStoreOptions(false, 0)
 	if err != nil {
 		return err
 	}
 	storeOptions.GraphDriverName = "overlay"
 	println(storeOptions.GraphDriverName)
+
 	store, err := storage.GetStore(storeOptions)
 	if err != nil {
 		return err
@@ -55,6 +53,7 @@ func imageLookup() (retErr error) {
 			os.Exit(1)
 		}
 	}()
+
 	imgs, err := store.Images()
 	if err != nil {
 		return err
@@ -74,10 +73,14 @@ func imageLookup() (retErr error) {
 	if imgRef == nil {
 		return err
 	}
+	imgCtx := &types.SystemContext{
+		OSChoice: "linux",
+	}
 	imagesCount := uniqueCount(images)
 	for img, num := range imagesCount {
 		fmt.Println(img)
 		fmt.Printf("image is used %d time(s)\n", num)
+
 		imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
 		if err != nil {
 			return err
