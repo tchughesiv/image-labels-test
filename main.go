@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/containers/image/v5/image"
 	"github.com/containers/image/v5/transports/alltransports"
@@ -20,15 +21,19 @@ func main() {
 // test product type/version aggregation from pod image lookup
 func imageLookup() (retErr error) {
 	images := []string{"quay.io/crio/redis:alpine", "quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
-	sys := &imagetypes.SystemContext{
-		OSChoice:                    "linux",
-		SystemRegistriesConfDirPath: "/etc/containers",
+	imgCtx := &imagetypes.SystemContext{
+		OSChoice: "linux",
 	}
+	ctx := context.Background()
+	var cancel context.CancelFunc = func() {}
+	ctx, cancel = context.WithTimeout(ctx, time.Duration(10)*time.Second)
+	defer cancel()
+
 	imagesCount := uniqueCount(images)
 	for img, num := range imagesCount {
 		fmt.Println(img)
 		fmt.Printf("image is used %d time(s)\n", num)
-		imgSrc, err := parseImageSource(context.TODO(), sys, "containers-storage:"+img)
+		imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
 		if err != nil {
 			return err
 		}
@@ -38,12 +43,12 @@ func imageLookup() (retErr error) {
 			}
 		}()
 
-		img, err := image.FromUnparsedImage(context.TODO(), sys, image.UnparsedInstance(imgSrc, nil))
+		img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
 		if err != nil {
 			return fmt.Errorf("Error parsing manifest for image: %v", err)
 		}
 
-		config, err := img.OCIConfig(context.TODO())
+		config, err := img.OCIConfig(ctx)
 		if err != nil {
 			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
 		}
@@ -59,12 +64,12 @@ func imageLookup() (retErr error) {
 	return retErr
 }
 
-func parseImageSource(ctx context.Context, sys *imagetypes.SystemContext, name string) (imagetypes.ImageSource, error) {
+func parseImageSource(ctx context.Context, imgCtx *imagetypes.SystemContext, name string) (imagetypes.ImageSource, error) {
 	ref, err := alltransports.ParseImageName(name)
 	if err != nil {
 		return nil, err
 	}
-	return ref.NewImageSource(ctx, sys)
+	return ref.NewImageSource(ctx, imgCtx)
 }
 
 func uniqueCount(intSlice []string) map[string]int {
