@@ -1,1 +1,1 @@
-# storage-layers-test
+# image-labels-test
