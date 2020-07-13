@@ -38,10 +38,12 @@ func imageLookup() (retErr error) {
 	ctx, cancel = context.WithTimeout(ctx, time.Duration(10)*time.Second)
 	defer cancel()
 
-	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
+	storeOptions, err := storage.DefaultStoreOptions(false, 0)
 	if err != nil {
 		return err
 	}
+	storeOptions.GraphDriverName = "overlay"
+	println(storeOptions.GraphDriverName)
 	store, err := storage.GetStore(storeOptions)
 	if err != nil {
 		return err
@@ -53,7 +55,13 @@ func imageLookup() (retErr error) {
 			os.Exit(1)
 		}
 	}()
-
+	imgs, err := store.Images()
+	if err != nil {
+		return err
+	}
+	for _, i := range imgs {
+		println("digest =" + i.Digest.String())
+	}
 	ref, err := is.Transport.ParseStoreReference(store, "test")
 	if err != nil {
 		return err
