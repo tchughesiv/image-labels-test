@@ -76,10 +76,8 @@ func imageLookup() (retErr error) {
 	imgCtx := &types.SystemContext{
 		OSChoice: "linux",
 	}
-	imagesCount := uniqueCount(images)
-	for img, num := range imagesCount {
+	for _, img := range images {
 		fmt.Println(img)
-		fmt.Printf("image is used %d time(s)\n", num)
 
 		imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
 		if err != nil {
@@ -118,18 +116,4 @@ func parseImageSource(ctx context.Context, imgCtx *types.SystemContext, name str
 		return nil, err
 	}
 	return ref.NewImageSource(ctx, imgCtx)
-}
-
-func uniqueCount(intSlice []string) map[string]int {
-	keys := make(map[string]bool)
-	list := map[string]int{}
-	for _, entry := range intSlice {
-		if _, value := keys[entry]; !value {
-			keys[entry] = true
-			list[entry] = 1
-		} else {
-			list[entry] = list[entry] + 1
-		}
-	}
-	return list
 }
