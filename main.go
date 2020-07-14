@@ -100,7 +100,6 @@ func imageLookup(args []string) (retErr error) {
 		if err != nil {
 			return err
 		}
-		println(inspectInfo.Tag)
 		if inspectInfo.Tag != "" {
 			println("tag = " + inspectInfo.Tag)
 		}
