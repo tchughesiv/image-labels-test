@@ -48,13 +48,15 @@ func imageLookup() (retErr error) {
 			os.Exit(1)
 		}
 	}()
-	imgs, err := store.Images()
-	if err != nil {
-		return err
-	}
-	for _, i := range imgs {
-		println("digest = " + i.Digest.String())
-	}
+	/*
+		imgs, err := store.Images()
+		if err != nil {
+			return err
+		}
+		for _, i := range imgs {
+			println("digest = " + i.Digest.String())
+		}
+	*/
 	ref, err := is.Transport.ParseStoreReference(store, "test")
 	if err != nil {
 		return err
