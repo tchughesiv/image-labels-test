@@ -87,22 +87,20 @@ func imageLookup() (retErr error) {
 				retErr = err
 			}
 		}()
-
 		img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
 		if err != nil {
 			return fmt.Errorf("Error parsing manifest for image: %v", err)
 		}
-
 		config, err := img.OCIConfig(ctx)
 		if err != nil {
 			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
 		}
-		println(config.Config.Entrypoint)
+		println(config.Config.User)
 		inspectInfo, err := img.Inspect(ctx)
 		if err != nil {
 			return err
 		}
-		println(inspectInfo.Env)
+		println(inspectInfo.Tag)
 		println("IMAGE LABELS -")
 		for key, val := range inspectInfo.Labels {
 			if key == "org.jboss.product" {
