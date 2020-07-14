@@ -106,7 +106,7 @@ fmt:
 
 # validate: lint
 validate:
-	@GO111MODULE="on" go vet -mod=vendor --build-tags "$(BUILDTAGS)" ./...
+	@GO111MODULE="on" go vet -mod=vendor -tags "$(BUILDTAGS)" ./...
 	@test -z "$$(gofmt -s -l . | grep -ve '^vendor' | tee /dev/stderr)"
 
 lint:
