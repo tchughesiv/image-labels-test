@@ -72,22 +72,19 @@ func imageLookup() (retErr error) {
 			return err
 		}
 		println(imgRef.DockerReference().Name())
-		imgSrc, err := imgRef.NewImageSource()
+		imgCtx := &types.SystemContext{
+			OSChoice: "linux",
+		}
+		imgSrc, err := imgRef.NewImageSource(ctx, imgCtx)
 		/*
-			imgCtx := &types.SystemContext{
-				OSChoice: "linux",
+			imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
+			if err != nil {
+				return err
 			}
-			for _, img := range images {
-				println(img)
-
-				imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
-				if err != nil {
-					return err
-				}
 		*/
 		defer func() {
 			if err = imgSrc.Close(); err != nil {
-				retErr = pkgerrors.Wrapf(retErr, fmt.Sprintf("(could not close image: %v) ", err))
+				retErr = err
 			}
 		}()
 
@@ -101,7 +98,7 @@ func imageLookup() (retErr error) {
 			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
 		}
 		println(config.Config.Entrypoint)
-		inspectInfo, err := img.Inspect()
+		inspectInfo, err := img.Inspect(ctx)
 		if err != nil {
 			return err
 		}
