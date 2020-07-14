@@ -39,7 +39,7 @@ export PATH := $(PATH):${GOBIN}
 # (and the user will probably find out because the cgo compilation will fail).
 GPGME_ENV = CGO_CFLAGS="$(shell gpgme-config --cflags 2>/dev/null)" CGO_LDFLAGS="$(shell gpgme-config --libs 2>/dev/null)"
 
-all: tools test validate .gitvalidation
+all: tools test validate # .gitvalidation
 
 build:
 	$(GPGME_ENV) GO111MODULE="on" go build $(BUILDFLAGS) ./...
