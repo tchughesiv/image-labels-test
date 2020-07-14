@@ -17,7 +17,8 @@ endif
 BUILD_TAGS_WINDOWS_CROSS = containers_image_openpgp
 BUILD_TAGS_DARWIN_CROSS = containers_image_openpgp
 
-BUILDTAGS = btrfs_noversion libdm_no_deferred_remove
+# BUILDTAGS = btrfs_noversion libdm_no_deferred_remove
+BUILDTAGS = libdm_no_deferred_remove
 BUILDFLAGS := -tags "$(BUILDTAGS)"
 
 PACKAGES := $(shell GO111MODULE=on go list $(BUILDFLAGS) ./...)
