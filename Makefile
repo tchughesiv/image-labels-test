@@ -104,7 +104,8 @@ test-skopeo:
 fmt:
 	@gofmt -l -s -w $(SOURCE_DIRS)
 
-validate: lint
+# validate: lint
+validate:
 	@GO111MODULE="on" go vet -mod=vendor ./...
 	@test -z "$$(gofmt -s -l . | grep -ve '^vendor' | tee /dev/stderr)"
 
