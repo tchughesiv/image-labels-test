@@ -19,7 +19,7 @@ BUILD_TAGS_DARWIN_CROSS = containers_image_openpgp
 
 # BUILDTAGS = btrfs_noversion libdm_no_deferred_remove
 BUILDTAGS = exclude_graphdriver_btrfs libdm_no_deferred_remove
-BUILDFLAGS := -tags "$(BUILDTAGS)"
+BUILDFLAGS := -mod=vendor -tags "$(BUILDTAGS)"
 
 PACKAGES := $(shell GO111MODULE=on go list $(BUILDFLAGS) ./...)
 SOURCE_DIRS = $(shell echo $(PACKAGES) | awk 'BEGIN{FS="/"; RS=" "}{print $$4}' | uniq)
