@@ -111,7 +111,7 @@ func imageLookup(args []string) (retErr error) {
 			}
 		}
 		for key, val := range inspectInfo.Labels {
-			if strings.Contains(key, "org.jboss.") {
+			if strings.Contains(key, "com.redhat.") {
 				println(key + "=" + val)
 			}
 		}
