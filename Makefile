@@ -20,7 +20,7 @@ mod:
 
 .PHONY: vet
 vet: mod
-	GOOS=linux GOARCH=amd64 go vet -mod=vendor ./...
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go vet -mod=vendor ./...
 
 .PHONY: format
 format: vet
@@ -28,7 +28,7 @@ format: vet
 
 .PHONY: build
 build: format
-	GOOS=linux GOARCH=amd64 go build -mod=vendor -a .
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -a .
 
 .PHONY: clean
 clean:
