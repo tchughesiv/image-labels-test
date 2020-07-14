@@ -79,7 +79,7 @@ tools: .install.gitvalidation .install.golangci-lint .install.golint
 	fi
 
 clean:
-	rm -rf $(MANPAGES)
+	rm -rf ./image-labels-test
 
 test:
 	@$(GPGME_ENV) GO111MODULE="on" go test $(BUILDFLAGS) -cover ./...
