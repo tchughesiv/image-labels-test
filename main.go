@@ -8,7 +8,6 @@ import (
 
 	"github.com/containers/image/v5/image"
 	is "github.com/containers/image/v5/storage"
-	"github.com/containers/image/v5/transports/alltransports"
 	"github.com/containers/image/v5/types"
 	"github.com/containers/storage"
 	"github.com/sirupsen/logrus"
@@ -79,12 +78,6 @@ func imageLookup() (retErr error) {
 		if err != nil {
 			return err
 		}
-		/*
-			imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
-			if err != nil {
-				return err
-			}
-		*/
 		defer func() {
 			if err = imgSrc.Close(); err != nil {
 				retErr = err
@@ -113,12 +106,4 @@ func imageLookup() (retErr error) {
 	}
 	println()
 	return retErr
-}
-
-func parseImageSource(ctx context.Context, imgCtx *types.SystemContext, name string) (types.ImageSource, error) {
-	ref, err := alltransports.ParseImageName(name)
-	if err != nil {
-		return nil, err
-	}
-	return ref.NewImageSource(ctx, imgCtx)
 }
