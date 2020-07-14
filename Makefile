@@ -19,9 +19,9 @@ BUILD_TAGS_DARWIN_CROSS = containers_image_openpgp
 
 # BUILDTAGS = btrfs_noversion libdm_no_deferred_remove
 BUILDTAGS = exclude_graphdriver_btrfs libdm_no_deferred_remove
-BUILDFLAGS := -mod=vendor -tags "$(BUILDTAGS)"
+BUILDFLAGS := -tags "$(BUILDTAGS)"
 
-PACKAGES := $(shell GO111MODULE=on go list $(BUILDFLAGS) ./...)
+PACKAGES := $(shell GO111MODULE=on go list -mod=vendor $(BUILDFLAGS) ./...)
 SOURCE_DIRS = $(shell echo $(PACKAGES) | awk 'BEGIN{FS="/"; RS=" "}{print $$4}' | uniq)
 
 PREFIX ?= ${DESTDIR}/usr
@@ -43,7 +43,7 @@ GPGME_ENV = CGO_CFLAGS="$(shell gpgme-config --cflags 2>/dev/null)" CGO_LDFLAGS=
 all: tools test validate # .gitvalidation
 
 build:
-	$(GPGME_ENV) GO111MODULE="on" go build $(BUILDFLAGS) ./...
+	$(GPGME_ENV) GO111MODULE="on" go build -mod=vendor $(BUILDFLAGS) ./...
 
 $(MANPAGES): %: %.md
 	$(GOMD2MAN) -in $< -out $@
@@ -82,7 +82,7 @@ clean:
 	rm -rf ./image-labels-test
 
 test:
-	@$(GPGME_ENV) GO111MODULE="on" go test $(BUILDFLAGS) -cover ./...
+	@$(GPGME_ENV) GO111MODULE="on" go test -mod=vendor $(BUILDFLAGS) -cover ./...
 
 # This is not run as part of (make all), but Travis CI does run this.
 # Demonstrating a working version of skopeo (possibly with modified SKOPEO_REPO/SKOPEO_BRANCH, e.g.
@@ -91,7 +91,7 @@ test:
 # the master branch of the upstream repo.
 test-skopeo:
 	@echo === Testing skopeo build
-	@project_path=$$(pwd) && project_module=$$(GO111MODULE="on" go list .) && export GOPATH=$$(mktemp -d) && \
+	@project_path=$$(pwd) && project_module=$$(GO111MODULE="on" go list -mod=vendor .) && export GOPATH=$$(mktemp -d) && \
 		skopeo_path=$${GOPATH}/src/github.com/containers/skopeo && \
 		git clone -b $(SKOPEO_BRANCH) https://github.com/$(SKOPEO_REPO) $${skopeo_path} && \
 		cd $${skopeo_path} && \
@@ -105,7 +105,7 @@ fmt:
 	@gofmt -l -s -w $(SOURCE_DIRS)
 
 validate: lint
-	@GO111MODULE="on" go vet ./...
+	@GO111MODULE="on" go vet -mod=vendor ./...
 	@test -z "$$(gofmt -s -l . | grep -ve '^vendor' | tee /dev/stderr)"
 
 lint:
