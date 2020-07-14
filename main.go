@@ -93,13 +93,23 @@ func imageLookup(args []string) (retErr error) {
 		if err != nil {
 			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
 		}
-		println(config.Config.User)
+		if config.Config.User != "" {
+			println("user = " + config.Config.User)
+		}
 		inspectInfo, err := img.Inspect(ctx)
 		if err != nil {
 			return err
 		}
 		println(inspectInfo.Tag)
-		println("IMAGE LABELS -")
+		if inspectInfo.Tag != "" {
+			println("tag = " + inspectInfo.Tag)
+		}
+		println("IMAGE LABELS:")
+		for key, val := range inspectInfo.Labels {
+			if strings.Contains(key, "org.jboss.") {
+				println(key + "=" + val)
+			}
+		}
 		for key, val := range inspectInfo.Labels {
 			if strings.Contains(key, "org.jboss.") {
 				println(key + "=" + val)
