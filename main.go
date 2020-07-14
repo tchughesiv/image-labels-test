@@ -76,6 +76,9 @@ func imageLookup() (retErr error) {
 			OSChoice: "linux",
 		}
 		imgSrc, err := imgRef.NewImageSource(ctx, imgCtx)
+		if err != nil {
+			return err
+		}
 		/*
 			imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
 			if err != nil {
