@@ -1,4 +1,4 @@
-.PHONY: all tools test validate lint .gitvalidation fmt
+.PHONY: all vendor tools test validate lint .gitvalidation fmt
 
 export GOPROXY=https://proxy.golang.org
 
@@ -40,9 +40,14 @@ export PATH := $(PATH):${GOBIN}
 # (and the user will probably find out because the cgo compilation will fail).
 GPGME_ENV = CGO_CFLAGS="$(shell gpgme-config --cflags 2>/dev/null)" CGO_LDFLAGS="$(shell gpgme-config --libs 2>/dev/null)"
 
-all: tools test validate # .gitvalidation
+all: tools vendor test validate # .gitvalidation
 
-build:
+vendor:
+	go mod tidy
+	go mod vendor
+	go mod verify
+
+build: vendor
 	$(GPGME_ENV) GO111MODULE="on" go build -mod=vendor $(BUILDFLAGS) ./...
 
 $(MANPAGES): %: %.md

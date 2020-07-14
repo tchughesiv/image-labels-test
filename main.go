@@ -13,21 +13,22 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var images = []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
+// var images = []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
 
 func main() {
 	debug := true
+	args := os.Args[1:]
 	logrus.SetLevel(logrus.ErrorLevel)
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
 	}
-	if err := imageLookup(); err != nil {
+	if err := imageLookup(args); err != nil {
 		logrus.Error(err)
 	}
 }
 
 // test product type/version aggregation from pod image lookup
-func imageLookup() (retErr error) {
+func imageLookup(args []string) (retErr error) {
 	ctx := context.Background()
 	//var cancel context.CancelFunc = func() {}
 	ctx, cancel := context.WithTimeout(ctx, time.Duration(10)*time.Second)
@@ -55,7 +56,7 @@ func imageLookup() (retErr error) {
 			println("digest = " + i.Digest.String())
 		}
 	*/
-	for _, img := range images {
+	for _, img := range args {
 		println()
 		println(img)
 		ref, err := is.Transport.ParseStoreReference(store, img)
