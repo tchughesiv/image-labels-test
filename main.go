@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"time"
 
+	"github.com/containers/image/v5/image"
 	is "github.com/containers/image/v5/storage"
 	"github.com/containers/image/v5/transports/alltransports"
 	"github.com/containers/image/v5/types"
@@ -70,42 +72,47 @@ func imageLookup() (retErr error) {
 			return err
 		}
 		println(imgRef.DockerReference().Name())
+		imgSrc, err := imgRef.NewImageSource()
+		/*
+			imgCtx := &types.SystemContext{
+				OSChoice: "linux",
+			}
+			for _, img := range images {
+				println(img)
+
+				imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
+				if err != nil {
+					return err
+				}
+		*/
+		defer func() {
+			if err = imgSrc.Close(); err != nil {
+				retErr = pkgerrors.Wrapf(retErr, fmt.Sprintf("(could not close image: %v) ", err))
+			}
+		}()
+
+		img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
+		if err != nil {
+			return fmt.Errorf("Error parsing manifest for image: %v", err)
+		}
+
+		config, err := img.OCIConfig(ctx)
+		if err != nil {
+			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
+		}
+		println(config.Config.Entrypoint)
+		inspectInfo, err := img.Inspect()
+		if err != nil {
+			return err
+		}
+		println(inspectInfo.Env)
+		println("IMAGE LABELS -")
+		for key, val := range inspectInfo.Labels {
+			if key == "org.jboss.product" {
+				println(key + "=" + val)
+			}
+		}
 	}
-	/*
-		imgCtx := &types.SystemContext{
-			OSChoice: "linux",
-		}
-		for _, img := range images {
-			println(img)
-
-			imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
-			if err != nil {
-				return err
-			}
-			defer func() {
-				if err = imgSrc.Close(); err != nil {
-					retErr = pkgerrors.Wrapf(retErr, fmt.Sprintf("(could not close image: %v) ", err))
-				}
-			}()
-
-			img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
-			if err != nil {
-				return fmt.Errorf("Error parsing manifest for image: %v", err)
-			}
-
-			config, err := img.OCIConfig(ctx)
-			if err != nil {
-				return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
-			}
-			println()
-			println("IMAGE LABELS -")
-			for key, val := range config.Config.Labels {
-				if key == "org.jboss.product" {
-					println(key + "=" + val)
-				}
-			}
-		}
-	*/
 	println()
 	return retErr
 }
