@@ -15,11 +15,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var images = []string{"quay.io/crio/redis:alpine", "quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
+var images = []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
 
 func main() {
 	debug := true
-	println("test")
 	logrus.SetLevel(logrus.ErrorLevel)
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
@@ -39,7 +38,6 @@ func imageLookup() (retErr error) {
 	if err != nil {
 		return err
 	}
-	println(storeOptions.GraphDriverName)
 	store, err := storage.GetStore(storeOptions)
 	if err != nil {
 		return err
@@ -55,7 +53,7 @@ func imageLookup() (retErr error) {
 		return err
 	}
 	for _, i := range imgs {
-		println("digest =" + i.Digest.String())
+		println("digest = " + i.Digest.String())
 	}
 	ref, err := is.Transport.ParseStoreReference(store, "test")
 	if err != nil {
@@ -73,7 +71,7 @@ func imageLookup() (retErr error) {
 		OSChoice: "linux",
 	}
 	for _, img := range images {
-		fmt.Println(img)
+		println(img)
 
 		imgSrc, err := parseImageSource(ctx, imgCtx, "containers-storage:"+img)
 		if err != nil {
@@ -94,15 +92,15 @@ func imageLookup() (retErr error) {
 		if err != nil {
 			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
 		}
-		fmt.Println()
-		fmt.Println("IMAGE LABELS -")
+		println()
+		println("IMAGE LABELS -")
 		for key, val := range config.Config.Labels {
 			if key == "org.jboss.product" {
-				fmt.Println(key + "=" + val)
+				println(key + "=" + val)
 			}
 		}
 	}
-	fmt.Println()
+	println()
 	return retErr
 }
 
