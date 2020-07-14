@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/containers/image/v5/image"
@@ -100,7 +101,7 @@ func imageLookup(args []string) (retErr error) {
 		println(inspectInfo.Tag)
 		println("IMAGE LABELS -")
 		for key, val := range inspectInfo.Labels {
-			if key == "org.jboss.product" {
+			if strings.Contains(key, "org.jboss.") {
 				println(key + "=" + val)
 			}
 		}
