@@ -57,7 +57,6 @@ func imageLookup() (retErr error) {
 	for _, img := range images {
 		println()
 		println(img)
-		println()
 		ref, err := is.Transport.ParseStoreReference(store, img)
 		if err != nil {
 			return err
