@@ -2,14 +2,11 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"strings"
 	"time"
 
-	"github.com/containers/image/v5/image"
-	is "github.com/containers/image/v5/storage"
-	"github.com/containers/image/v5/types"
+	"github.com/containers/libpod/v2/libpod/image"
 	"github.com/containers/storage"
 	"github.com/sirupsen/logrus"
 )
@@ -30,88 +27,55 @@ func main() {
 
 // test product type/version aggregation from pod image lookup
 func imageLookup(args []string) (retErr error) {
-	ctx := context.Background()
-	//var cancel context.CancelFunc = func() {}
-	ctx, cancel := context.WithTimeout(ctx, time.Duration(10)*time.Second)
-	defer cancel()
 	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
 	if err != nil {
 		return err
 	}
-	store, err := storage.GetStore(storeOptions)
+	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
 	}
-	defer func() {
-		if _, err := store.Shutdown(false); err != nil {
-			logrus.Error(err)
-			os.Exit(1)
+	images, err := ir.GetImages()
+	if err != nil {
+		return err
+	}
+	for _, img := range images {
+		println(img.InputName)
+		for _, name := range img.Names() {
+			println(name)
 		}
-	}()
-	/*
-		imgs, err := store.Images()
+	}
+	for _, imgName := range args {
+		img, err := ir.NewFromLocal(imgName)
 		if err != nil {
 			return err
 		}
-		for _, i := range imgs {
-			println("digest = " + i.Digest.String())
-		}
-	*/
-	for _, img := range args {
 		println()
-		println(img)
-		ref, err := is.Transport.ParseStoreReference(store, img)
+		println(img.InputName)
+		for _, name := range img.Names() {
+			println(name)
+		}
+		// get inspect image data
+		ctx := context.Background()
+		//var cancel context.CancelFunc = func() {}
+		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
+		defer cancel()
+		imgData, err := img.Inspect(ctx)
 		if err != nil {
 			return err
 		}
-		strRef := ref.StringWithinTransport()
-		imgRef, err := is.Transport.ParseReference(strRef)
-		if err != nil {
-			return err
-		}
-		if imgRef == nil {
-			return err
-		}
-		println(imgRef.DockerReference().Name())
-		imgCtx := &types.SystemContext{
-			OSChoice: "linux",
-		}
-		imgSrc, err := imgRef.NewImageSource(ctx, imgCtx)
-		if err != nil {
-			return err
-		}
-		defer func() {
-			if err = imgSrc.Close(); err != nil {
-				retErr = err
+		println(imgData.ID)
+		if imgData.Labels != nil {
+			println("IMAGE LABELS:")
+			for key, val := range imgData.Labels {
+				if strings.Contains(key, "org.jboss.") {
+					println(key + "=" + val)
+				}
 			}
-		}()
-		img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
-		if err != nil {
-			return fmt.Errorf("Error parsing manifest for image: %v", err)
-		}
-		config, err := img.OCIConfig(ctx)
-		if err != nil {
-			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
-		}
-		if config.Config.User != "" {
-			println("user = " + config.Config.User)
-		}
-		inspectInfo, err := img.Inspect(ctx)
-		if err != nil {
-			return err
-		}
-		if inspectInfo.Tag != "" {
-			println("tag = " + inspectInfo.Tag)
-		}
-		println("IMAGE LABELS:")
-		for key, val := range inspectInfo.Labels {
-			if strings.Contains(key, "org.jboss.") {
-				println(key + "=" + val)
-			}
-		}
-		for key, val := range inspectInfo.Labels {
-			if strings.Contains(key, "com.redhat.") {
-				println(key + "=" + val)
+			for key, val := range imgData.Labels {
+				if strings.Contains(key, "com.redhat.") {
+					println(key + "=" + val)
+				}
 			}
 		}
 	}
