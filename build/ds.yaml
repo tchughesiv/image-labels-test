@@ -29,12 +29,17 @@ spec:
         securityContext:
           privileged: false
         volumeMounts:
-        - mountPath: /var/lib/containers/storage
+        - mountPath: /var/lib/shared
           name: lib
           readOnly: true
-        - mountPath: /etc/containers
-          name: containers
-          readOnly: true
+        - mountPath: /var/lib/containers
+          name: emptyrun
+        #- mountPath: /var/lib/containers/storage
+        #  name: lib
+        #  readOnly: true
+        #- mountPath: /etc/containers
+        #  name: containers
+        #  readOnly: true
         #- mountPath: /var/run/containers
         #  name: emptyrun
         ##- mountPath: /var/run/containers/storage

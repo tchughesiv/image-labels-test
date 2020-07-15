@@ -36,19 +36,17 @@ func imageLookup(args []string) (retErr error) {
 	if err != nil {
 		return err
 	}
-	/*
-		images, err := ir.GetImages()
-		if err != nil {
-			return err
+	images, err := ir.GetImages()
+	if err != nil {
+		return err
+	}
+	for _, img := range images {
+		println()
+		println(img.InputName)
+		for _, name := range img.Names() {
+			println(name)
 		}
-		for _, img := range images {
-			println()
-			println(img.InputName)
-			for _, name := range img.Names() {
-				println(name)
-			}
-		}
-	*/
+	}
 	for _, imgName := range args {
 		img, err := ir.NewFromLocal(imgName)
 		if err != nil {
