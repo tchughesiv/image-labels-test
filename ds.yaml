@@ -1,0 +1,68 @@
+# oc adm policy add-scc-to-user hostmount-anyuid -z image-labels
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: image-labels
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-labels
+spec:
+  selector:
+    matchLabels:
+      name: image-labels
+  template:
+    metadata:
+      labels:
+        name: image-labels
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - sleep infinity
+        image: registry.access.redhat.com/ubi8
+        imagePullPolicy: IfNotPresent
+        name: image-labels
+        securityContext:
+          privileged: false
+        volumeMounts:
+        - mountPath: /var/lib/containers/storage
+          name: lib
+          readOnly: true
+        - mountPath: /etc/containers
+          name: containers
+          readOnly: true
+        #- mountPath: /var/run/containers
+        #  name: emptyrun
+        ##- mountPath: /var/run/containers/storage
+        ##  name: run
+        ##  readOnly: true
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: Always
+      serviceAccount: image-labels
+      serviceAccountName: image-labels
+      terminationGracePeriodSeconds: 30
+      #tolerations:
+      #- effect: NoSchedule
+      #  key: node-role.kubernetes.io/master
+      #  operator: Exists
+      volumes:
+      - name: lib
+        hostPath:
+          path: /var/lib/containers/storage
+          type: Directory
+      - name: containers
+        hostPath:
+          path: /etc/containers
+          type: Directory
+      - name: emptyrun
+        emptyDir: {}
+      - name: run
+        hostPath:
+          path: /var/run/containers/storage
+          type: Directory
