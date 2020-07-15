@@ -49,6 +49,7 @@ vendor:
 
 build: vendor
 	$(GPGME_ENV) GO111MODULE="on" go build -mod=vendor $(BUILDFLAGS) ./...
+	podman build -f build/Dockerfile  -t quay.io/tchughesiv/image-labels-test .
 
 $(MANPAGES): %: %.md
 	$(GOMD2MAN) -in $< -out $@

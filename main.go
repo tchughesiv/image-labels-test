@@ -11,8 +11,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// var images = []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
-
 func main() {
 	debug := true
 	args := os.Args[1:]
@@ -20,6 +18,7 @@ func main() {
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
 	}
+	// RUN mkdir -p /var/lib/containers/overlay-images /var/lib/containers/overlay-layers; touch /var/lib/containers/overlay-images/images.lock; touch /var/lib/containers/overlay-layers/layers.lock
 	if err := imageLookup(args); err != nil {
 		logrus.Error(err)
 	}
@@ -27,24 +26,31 @@ func main() {
 
 // test product type/version aggregation from pod image lookup
 func imageLookup(args []string) (retErr error) {
+	// ERRO[0000] error opening "/var/lib/containers/storage/storage.lock": permission denied
+	// https://github.com/containers/storage/blob/ed28f2457e2f57cb3d3f2f4029a85f72b35370ab/store.go#L656-L664
 	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
 	if err != nil {
 		return err
 	}
+	println("graphroot is " + storeOptions.GraphRoot)
+	println("graphdriver is " + storeOptions.GraphDriverName)
 	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
 	}
-	images, err := ir.GetImages()
-	if err != nil {
-		return err
-	}
-	for _, img := range images {
-		println(img.InputName)
-		for _, name := range img.Names() {
-			println(name)
+	/*
+			images, err := ir.GetImages()
+			if err != nil {
+				return err
+			}
+		for _, img := range images {
+			println()
+			println(img.InputName)
+			for _, name := range img.Names() {
+				println(name)
+			}
 		}
-	}
+	*/
 	for _, imgName := range args {
 		img, err := ir.NewFromLocal(imgName)
 		if err != nil {
@@ -55,11 +61,11 @@ func imageLookup(args []string) (retErr error) {
 		for _, name := range img.Names() {
 			println(name)
 		}
-		// get inspect image data
+
 		ctx := context.Background()
-		//var cancel context.CancelFunc = func() {}
 		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
 		defer cancel()
+		// get inspect image data
 		imgData, err := img.Inspect(ctx)
 		if err != nil {
 			return err
