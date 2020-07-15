@@ -24,7 +24,7 @@ spec:
         - -c
         - sleep infinity
         image: quay.io/tchughesiv/image-labels-test
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: image-labels
         securityContext:
           privileged: false
