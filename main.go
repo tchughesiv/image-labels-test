@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strings"
 
 	"github.com/containers/libpod/v2/libpod/image"
 	"github.com/containers/storage"
@@ -51,7 +52,7 @@ func imageLookup(args []string) (retErr error) {
 	for _, img := range images {
 		println(img.InputName)
 		println(img.ID())
-		for name := range img.Names() {
+		for _, name := range img.Names() {
 			println(name)
 		}
 	}
@@ -63,8 +64,21 @@ func imageLookup(args []string) (retErr error) {
 		println()
 		println(img.InputName)
 		println(img.ID())
-		for name := range img.Names() {
+		for _, name := range img.Names() {
 			println(name)
+		}
+		if img.Config.Labels != nil {
+			println("IMAGE LABELS:")
+			for key, val := range img.Config.Labels {
+				if strings.Contains(key, "org.jboss.") {
+					println(key + "=" + val)
+				}
+			}
+			for key, val := range img.Config.Labels {
+				if strings.Contains(key, "com.redhat.") {
+					println(key + "=" + val)
+				}
+			}
 		}
 	}
 	println()
