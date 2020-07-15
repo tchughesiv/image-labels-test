@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/containers/libpod/v2/libpod/image"
 	"github.com/containers/storage"
@@ -66,9 +68,15 @@ func imageLookup(args []string) (retErr error) {
 		for _, name := range img.Names() {
 			println(name)
 		}
-
 		// get inspect image data
-		imgData := img.ImageData
+		ctx := context.Background()
+		//var cancel context.CancelFunc = func() {}
+		ctx, cancel := context.WithTimeout(ctx, time.Duration(10)*time.Second)
+		defer cancel()
+		imgData, err := img.Inspect(ctx)
+		if err != nil {
+			return err
+		}
 		println(imgData.ID)
 		if imgData.Labels != nil {
 			println("IMAGE LABELS:")
