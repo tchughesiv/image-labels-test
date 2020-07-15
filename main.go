@@ -63,19 +63,24 @@ func imageLookup(args []string) (retErr error) {
 		}
 		println()
 		println(img.InputName)
-		println(img.ID())
 		for _, name := range img.Names() {
 			println(name)
 		}
-		println("IMAGE LABELS:")
-		for key, val := range img.Config.Labels {
-			if strings.Contains(key, "org.jboss.") {
-				println(key + "=" + val)
+
+		// get inspect image data
+		imgData := img.ImageData
+		println(imgData.ID)
+		if imgData.Labels != nil {
+			println("IMAGE LABELS:")
+			for key, val := range imgData.Labels {
+				if strings.Contains(key, "org.jboss.") {
+					println(key + "=" + val)
+				}
 			}
-		}
-		for key, val := range img.Config.Labels {
-			if strings.Contains(key, "com.redhat.") {
-				println(key + "=" + val)
+			for key, val := range imgData.Labels {
+				if strings.Contains(key, "com.redhat.") {
+					println(key + "=" + val)
+				}
 			}
 		}
 	}
