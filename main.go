@@ -28,17 +28,22 @@ func imageLookup(args []string) (retErr error) {
 	if err != nil {
 		return err
 	}
-	store, err := storage.GetStore(storeOptions)
+	/*
+		store, err := storage.GetStore(storeOptions)
+		if err != nil {
+			return err
+		}
+		defer func() {
+			if _, err := store.Shutdown(false); err != nil {
+				logrus.Error(err)
+				os.Exit(1)
+			}
+		}()
+	*/
+	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
 	}
-	defer func() {
-		if _, err := store.Shutdown(false); err != nil {
-			logrus.Error(err)
-			os.Exit(1)
-		}
-	}()
-	ir := image.NewImageRuntimeFromStore(store)
 	imgData, err := ir.NewFromLocal("redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55")
 	if err != nil {
 		return err
