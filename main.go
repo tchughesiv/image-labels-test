@@ -46,6 +46,15 @@ func imageLookup(args []string) (retErr error) {
 	println(imgData.ID)
 	println(imgData.Config.Env)
 
+	images, err := ir.GetImages()
+	if err != nil {
+		return err
+	}
+	for _, img := range images {
+		println(img.ID)
+		println(img.Config.Env)
+	}
+
 	println()
 	return retErr
 }
