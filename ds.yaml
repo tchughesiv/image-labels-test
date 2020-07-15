@@ -23,7 +23,7 @@ spec:
         - /bin/sh
         - -c
         - sleep infinity
-        image: registry.access.redhat.com/ubi8
+        image: quay.io/tchughesiv/image-labels-test
         imagePullPolicy: IfNotPresent
         name: image-labels
         securityContext:
