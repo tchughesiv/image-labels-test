@@ -67,17 +67,15 @@ func imageLookup(args []string) (retErr error) {
 		for _, name := range img.Names() {
 			println(name)
 		}
-		if img.Config.Labels != nil {
-			println("IMAGE LABELS:")
-			for key, val := range img.Config.Labels {
-				if strings.Contains(key, "org.jboss.") {
-					println(key + "=" + val)
-				}
+		println("IMAGE LABELS:")
+		for key, val := range img.Config.Labels {
+			if strings.Contains(key, "org.jboss.") {
+				println(key + "=" + val)
 			}
-			for key, val := range img.Config.Labels {
-				if strings.Contains(key, "com.redhat.") {
-					println(key + "=" + val)
-				}
+		}
+		for key, val := range img.Config.Labels {
+			if strings.Contains(key, "com.redhat.") {
+				println(key + "=" + val)
 			}
 		}
 	}
