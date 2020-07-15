@@ -25,10 +25,13 @@ func main() {
 
 // test product type/version aggregation from pod image lookup
 func imageLookup(args []string) (retErr error) {
+	// ERRO[0000] error opening "/var/lib/containers/storage/storage.lock": permission denied
+	// https://github.com/containers/storage/blob/ed28f2457e2f57cb3d3f2f4029a85f72b35370ab/store.go#L656-L664
 	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
 	if err != nil {
 		return err
 	}
+	println("graphroot is " + storeOptions.GraphRoot)
 	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
