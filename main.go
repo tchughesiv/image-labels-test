@@ -11,8 +11,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// var images = []string{"quay.io/crio/redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55", "redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55"}
-
 func main() {
 	debug := true
 	args := os.Args[1:]
@@ -40,6 +38,7 @@ func imageLookup(args []string) (retErr error) {
 		return err
 	}
 	for _, img := range images {
+		println()
 		println(img.InputName)
 		for _, name := range img.Names() {
 			println(name)
@@ -55,11 +54,11 @@ func imageLookup(args []string) (retErr error) {
 		for _, name := range img.Names() {
 			println(name)
 		}
-		// get inspect image data
+
 		ctx := context.Background()
-		//var cancel context.CancelFunc = func() {}
 		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
 		defer cancel()
+		// get inspect image data
 		imgData, err := img.Inspect(ctx)
 		if err != nil {
 			return err
