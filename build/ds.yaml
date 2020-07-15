@@ -32,8 +32,8 @@ spec:
         - mountPath: /var/lib/shared
           name: lib
           readOnly: true
-        #- mountPath: /var/lib/containers
-        #  name: emptyrun
+        - mountPath: /var/lib/containers
+          name: emptyrun
         #- mountPath: /var/lib/containers/storage
         #  name: lib
         #  readOnly: true
@@ -46,12 +46,12 @@ spec:
         ##  name: run
         ##  readOnly: true
       dnsPolicy: ClusterFirst
-      nodeSelector:
-        kubernetes.io/os: linux
+      #nodeSelector:
+        #kubernetes.io/hostname: worker-4.mw-ocp4.cloud.lab.eng.bos.redhat.com
+        #kubernetes.io/os: linux
       restartPolicy: Always
       serviceAccount: image-labels
       serviceAccountName: image-labels
-      terminationGracePeriodSeconds: 30
       #tolerations:
       #- effect: NoSchedule
       #  key: node-role.kubernetes.io/master
