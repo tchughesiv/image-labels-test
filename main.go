@@ -31,18 +31,6 @@ func imageLookup(args []string) (retErr error) {
 	if err != nil {
 		return err
 	}
-	/*
-		store, err := storage.GetStore(storeOptions)
-		if err != nil {
-			return err
-		}
-		defer func() {
-			if _, err := store.Shutdown(false); err != nil {
-				logrus.Error(err)
-				os.Exit(1)
-			}
-		}()
-	*/
 	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
@@ -53,7 +41,6 @@ func imageLookup(args []string) (retErr error) {
 	}
 	for _, img := range images {
 		println(img.InputName)
-		println(img.ID())
 		for _, name := range img.Names() {
 			println(name)
 		}
@@ -71,7 +58,7 @@ func imageLookup(args []string) (retErr error) {
 		// get inspect image data
 		ctx := context.Background()
 		//var cancel context.CancelFunc = func() {}
-		ctx, cancel := context.WithTimeout(ctx, time.Duration(10)*time.Second)
+		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
 		defer cancel()
 		imgData, err := img.Inspect(ctx)
 		if err != nil {
