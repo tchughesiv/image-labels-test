@@ -50,7 +50,9 @@ func imageLookup(args []string) (retErr error) {
 	}
 	for _, img := range images {
 		println(img.ID)
-		println(img.Names())
+		for name := range img.Names() {
+			println(name)
+		}
 	}
 
 	for _, imgName := range args {
@@ -59,7 +61,9 @@ func imageLookup(args []string) (retErr error) {
 			return err
 		}
 		println(img.ID)
-		println(img.Names())
+		for name := range img.Names() {
+			println(name)
+		}
 	}
 	println()
 	return retErr
