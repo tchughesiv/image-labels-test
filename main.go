@@ -44,22 +44,23 @@ func imageLookup(args []string) (retErr error) {
 	if err != nil {
 		return err
 	}
-	imgData, err := ir.NewFromLocal("redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55")
-	if err != nil {
-		return err
-	}
-	println(imgData.ID)
-	println(imgData.Config.Env)
-
 	images, err := ir.GetImages()
 	if err != nil {
 		return err
 	}
 	for _, img := range images {
 		println(img.ID)
-		println(img.Config.Env)
+		println(img.Names())
 	}
 
+	for _, imgName := range args {
+		img, err := ir.NewFromLocal(imgName)
+		if err != nil {
+			return err
+		}
+		println(img.ID)
+		println(img.Names())
+	}
 	println()
 	return retErr
 }
