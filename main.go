@@ -1,15 +1,9 @@
 package main
 
 import (
-	"context"
-	"fmt"
 	"os"
-	"strings"
-	"time"
 
-	"github.com/containers/image/v5/image"
-	is "github.com/containers/image/v5/storage"
-	"github.com/containers/image/v5/types"
+	"github.com/containers/libpod/v2/libpod/image"
 	"github.com/containers/storage"
 	"github.com/sirupsen/logrus"
 )
@@ -30,10 +24,6 @@ func main() {
 
 // test product type/version aggregation from pod image lookup
 func imageLookup(args []string) (retErr error) {
-	ctx := context.Background()
-	//var cancel context.CancelFunc = func() {}
-	ctx, cancel := context.WithTimeout(ctx, time.Duration(10)*time.Second)
-	defer cancel()
 	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
 	if err != nil {
 		return err
@@ -48,73 +38,14 @@ func imageLookup(args []string) (retErr error) {
 			os.Exit(1)
 		}
 	}()
-	/*
-		imgs, err := store.Images()
-		if err != nil {
-			return err
-		}
-		for _, i := range imgs {
-			println("digest = " + i.Digest.String())
-		}
-	*/
-	for _, img := range args {
-		println()
-		println(img)
-		ref, err := is.Transport.ParseStoreReference(store, img)
-		if err != nil {
-			return err
-		}
-		strRef := ref.StringWithinTransport()
-		imgRef, err := is.Transport.ParseReference(strRef)
-		if err != nil {
-			return err
-		}
-		if imgRef == nil {
-			return err
-		}
-		println(imgRef.DockerReference().Name())
-		imgCtx := &types.SystemContext{
-			OSChoice: "linux",
-		}
-		imgSrc, err := imgRef.NewImageSource(ctx, imgCtx)
-		if err != nil {
-			return err
-		}
-		defer func() {
-			if err = imgSrc.Close(); err != nil {
-				retErr = err
-			}
-		}()
-		img, err := image.FromUnparsedImage(ctx, imgCtx, image.UnparsedInstance(imgSrc, nil))
-		if err != nil {
-			return fmt.Errorf("Error parsing manifest for image: %v", err)
-		}
-		config, err := img.OCIConfig(ctx)
-		if err != nil {
-			return fmt.Errorf("Error reading OCI-formatted configuration data: %v", err)
-		}
-		if config.Config.User != "" {
-			println("user = " + config.Config.User)
-		}
-		inspectInfo, err := img.Inspect(ctx)
-		if err != nil {
-			return err
-		}
-		if inspectInfo.Tag != "" {
-			println("tag = " + inspectInfo.Tag)
-		}
-		println("IMAGE LABELS:")
-		for key, val := range inspectInfo.Labels {
-			if strings.Contains(key, "org.jboss.") {
-				println(key + "=" + val)
-			}
-		}
-		for key, val := range inspectInfo.Labels {
-			if strings.Contains(key, "com.redhat.") {
-				println(key + "=" + val)
-			}
-		}
+	ir := image.NewImageRuntimeFromStore(store)
+	imgData, err := ir.NewFromLocal("redis@sha256:1780b5a5496189974b94eb2595d86731d7a0820e4beb8ea770974298a943ed55")
+	if err != nil {
+		return err
 	}
+	println(imgData.ID)
+	println(imgData.Config.Env)
+
 	println()
 	return retErr
 }
