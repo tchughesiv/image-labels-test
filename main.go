@@ -18,6 +18,7 @@ func main() {
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
 	}
+	// RUN mkdir -p /var/lib/containers/overlay-images /var/lib/containers/overlay-layers; touch /var/lib/containers/overlay-images/images.lock; touch /var/lib/containers/overlay-layers/layers.lock
 	if err := imageLookup(args); err != nil {
 		logrus.Error(err)
 	}
@@ -32,21 +33,24 @@ func imageLookup(args []string) (retErr error) {
 		return err
 	}
 	println("graphroot is " + storeOptions.GraphRoot)
+	println("graphdriver is " + storeOptions.GraphDriverName)
 	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
 	if err != nil {
 		return err
 	}
-	images, err := ir.GetImages()
-	if err != nil {
-		return err
-	}
-	for _, img := range images {
-		println()
-		println(img.InputName)
-		for _, name := range img.Names() {
-			println(name)
+	/*
+			images, err := ir.GetImages()
+			if err != nil {
+				return err
+			}
+		for _, img := range images {
+			println()
+			println(img.InputName)
+			for _, name := range img.Names() {
+				println(name)
+			}
 		}
-	}
+	*/
 	for _, imgName := range args {
 		img, err := ir.NewFromLocal(imgName)
 		if err != nil {
