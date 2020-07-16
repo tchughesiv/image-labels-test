@@ -1,4 +1,3 @@
-# buildah inspect image-registry.openshift-image-registry.svc:5000/tommy/camel-k-kit-bs88jp4c6o1f895s3fn0@sha256:17f4d950788fd7c99e706dd155df8f061c6724cf83ba158a684e68d7c2921952
 {
     "Type": "buildah 0.0.1",
     "FromImage": "image-registry.openshift-image-registry.svc:5000/tommy/camel-k-kit-bs88jp4c6o1f895s3fn0@sha256:17f4d950788fd7c99e706dd155df8f061c6724cf83ba158a684e68d7c2921952",
