@@ -95,7 +95,7 @@ func parseFindings(builder *buildah.Builder) {
 			}
 		*/
 		for key, val := range ociConfig.Labels {
-			println(key + ": " + val)
+			println(key + " = " + val)
 		}
 	}
 	println()
