@@ -63,7 +63,9 @@ func inspectCmd(c *cobra.Command, args []string, iopts inspectResults) error {
 	if err != nil {
 		return err
 	}
-	println(store.GraphOptions())
+	for _, opt := range store.GraphOptions() {
+		println(opt)
+	}
 
 	ctx := getContext()
 
