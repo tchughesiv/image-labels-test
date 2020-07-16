@@ -2,8 +2,11 @@
 FROM registry.access.redhat.com/ubi8
 
 RUN useradd build && yum -y update --security --sec-severity=Important --sec-severity=Critical && \
-        yum -y install fuse-overlayfs --setopt=tsflags=nodocs && \
+        yum -y install containers-common fuse-overlayfs --setopt=tsflags=nodocs && \
         rm -rf /var/cache /var/log/yum.*
+
+# Adjust storage.conf to enable Fuse storage.
+RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
 
 # Set up environment variables to note that this is
 # not starting with usernamespace and default to
