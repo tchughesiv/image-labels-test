@@ -62,8 +62,8 @@ func init() {
 	if err != nil {
 		logrus.Errorf(err.Error())
 		os.Exit(1)
-
 	}
+	// RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
 
 	if len(storageOptions.GraphDriverOptions) > 0 {
 		optionSlice := storageOptions.GraphDriverOptions[:]
