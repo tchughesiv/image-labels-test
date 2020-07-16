@@ -32,9 +32,9 @@ spec:
         - mountPath: /var/lib/shared
           name: lib
           readOnly: true
-        - mountPath: /etc/containers
-          name: containers
-          readOnly: true
+        #- mountPath: /etc/containers
+        #  name: containers
+        #  readOnly: true
       dnsPolicy: ClusterFirst
       nodeSelector:
         kubernetes.io/os: linux
