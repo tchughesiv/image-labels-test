@@ -1,25 +1,36 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
-	"text/template"
+	"os/exec"
+	"syscall"
 
 	"github.com/containers/buildah"
-	buildahcli "github.com/containers/buildah/pkg/cli"
+	"github.com/containers/buildah/pkg/cli"
 	"github.com/containers/buildah/pkg/parse"
+	"github.com/containers/storage"
 	"github.com/containers/storage/pkg/unshare"
+	ispecs "github.com/opencontainers/image-spec/specs-go"
+	rspecs "github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"golang.org/x/crypto/ssh/terminal"
 )
 
-var (
-	globalFlagResults globalFlags
-)
+type globalFlags struct {
+	Debug             bool
+	LogLevel          string
+	Root              string
+	RunRoot           string
+	StorageDriver     string
+	RegistriesConf    string
+	RegistriesConfDir string
+	DefaultMountsFile string
+	StorageOpts       []string
+	UserNSUID         []string
+	UserNSGID         []string
+}
 
 var rootCmd = &cobra.Command{
 	Use:  "buildah",
@@ -37,133 +48,58 @@ var rootCmd = &cobra.Command{
 	SilenceErrors: true,
 }
 
-const (
-	logLevel             = "log-level"
-	inspectTypeContainer = "container"
-	inspectTypeImage     = "image"
+var (
+	globalFlagResults globalFlags
 )
 
-type inspectResults struct {
-	format      string
-	inspectType string
-}
-
-type globalFlags struct {
-	Debug             bool
-	LogLevel          string
-	Root              string
-	RunRoot           string
-	StorageDriver     string
-	RegistriesConf    string
-	RegistriesConfDir string
-	DefaultMountsFile string
-	StorageOpts       []string
-	UserNSUID         []string
-	UserNSGID         []string
-}
-
 func init() {
+	logrus.SetFormatter(&logrus.TextFormatter{DisableTimestamp: true})
+
 	var (
-		opts               inspectResults
-		inspectDescription = "\n  Inspects a build container's or built image's configuration."
+		defaultStoreDriverOptions []string
 	)
+	storageOptions, err := storage.DefaultStoreOptions(false, 0)
+	if err != nil {
+		logrus.Errorf(err.Error())
+		os.Exit(1)
 
-	inspectCommand := &cobra.Command{
-		Use:   "inspect",
-		Short: "Inspect the configuration of a container or image",
-		Long:  inspectDescription,
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return inspectCmd(cmd, args, opts)
-		},
-		Example: `buildah inspect containerID
-  buildah inspect --type image imageID
-  buildah inspect --format '{{.OCIv1.Config.Env}}' alpine`,
 	}
-	inspectCommand.SetUsageTemplate(UsageTemplate())
 
-	flags := inspectCommand.Flags()
-	flags.SetInterspersed(false)
-	flags.StringVarP(&opts.format, "format", "f", "", "use `format` as a Go template to format the output")
-	flags.StringVarP(&opts.inspectType, "type", "t", inspectTypeContainer, "look at the item of the specified `type` (container or image) and name")
+	if len(storageOptions.GraphDriverOptions) > 0 {
+		optionSlice := storageOptions.GraphDriverOptions[:]
+		defaultStoreDriverOptions = optionSlice
+	}
 
-	rootCmd.AddCommand(inspectCommand)
+	cobra.OnInitialize(initConfig)
+	//rootCmd.TraverseChildren = true
+	rootCmd.Version = fmt.Sprintf("%s (image-spec %s, runtime-spec %s)", buildah.Version, ispecs.Version, rspecs.Version)
+	rootCmd.PersistentFlags().BoolVar(&globalFlagResults.Debug, "debug", false, "print debugging information")
+	// TODO Need to allow for environment variable
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RegistriesConf, "registries-conf", "", "path to registries.conf file (not usually used)")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RegistriesConfDir, "registries-conf-dir", "", "path to registries.conf.d directory (not usually used)")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.Root, "root", storageOptions.GraphRoot, "storage root dir")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RunRoot, "runroot", storageOptions.RunRoot, "storage state dir")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.StorageDriver, "storage-driver", storageOptions.GraphDriverName, "storage-driver")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.StorageOpts, "storage-opt", defaultStoreDriverOptions, "storage driver option")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.UserNSUID, "userns-uid-map", []string{}, "default `ctrID:hostID:length` UID mapping to use")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.UserNSGID, "userns-gid-map", []string{}, "default `ctrID:hostID:length` GID mapping to use")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.DefaultMountsFile, "default-mounts-file", "", "path to default mounts file")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.LogLevel, logLevel, "error", `The log level to be used. Either "debug", "info", "warn" or "error".`)
+
+	if err := rootCmd.PersistentFlags().MarkHidden("debug"); err != nil {
+		logrus.Fatalf("unable to mark debug flag as hidden: %v", err)
+	}
+	if err := rootCmd.PersistentFlags().MarkHidden("default-mounts-file"); err != nil {
+		logrus.Fatalf("unable to mark default-mounts-file flag as hidden: %v", err)
+	}
 }
 
-func inspectCmd(c *cobra.Command, args []string, iopts inspectResults) error {
-	var builder *buildah.Builder
-
-	if len(args) == 0 {
-		return errors.Errorf("container or image name must be specified")
-	}
-	if err := buildahcli.VerifyFlagsArgsOrder(args); err != nil {
-		return err
-	}
-	if len(args) > 1 {
-		return errors.Errorf("too many arguments specified")
-	}
-
-	systemContext, err := parse.SystemContextFromOptions(c)
-	if err != nil {
-		return errors.Wrapf(err, "error building system context")
-	}
-
-	name := args[0]
-
-	store, err := getStore(c)
-	if err != nil {
-		return err
-	}
-
-	ctx := getContext()
-
-	switch iopts.inspectType {
-	case inspectTypeContainer:
-		builder, err = openBuilder(ctx, store, name)
-		if err != nil {
-			if c.Flag("type").Changed {
-				return errors.Wrapf(err, "error reading build container %q", name)
-			}
-			builder, err = openImage(ctx, systemContext, store, name)
-			if err != nil {
-				return errors.Wrapf(err, "error reading build object %q", name)
-			}
-		}
-	case inspectTypeImage:
-		builder, err = openImage(ctx, systemContext, store, name)
-		if err != nil {
-			return errors.Wrapf(err, "error reading image %q", name)
-		}
-	default:
-		return errors.Errorf("the only recognized types are %q and %q", inspectTypeContainer, inspectTypeImage)
-	}
-	out := buildah.GetBuildInfo(builder)
-	if iopts.format != "" {
-		format := iopts.format
-		if matched, err := regexp.MatchString("{{.*}}", format); err != nil {
-			return errors.Wrapf(err, "error validating format provided: %s", format)
-		} else if !matched {
-			return errors.Errorf("error invalid format provided: %s", format)
-		}
-		t, err := template.New("format").Parse(format)
-		if err != nil {
-			return errors.Wrapf(err, "Template parsing error")
-		}
-		if err = t.Execute(os.Stdout, out); err != nil {
-			return err
-		}
-		if terminal.IsTerminal(int(os.Stdout.Fd())) {
-			fmt.Println()
-		}
-		return nil
-	}
-
-	enc := json.NewEncoder(os.Stdout)
-	enc.SetIndent("", "    ")
-	if terminal.IsTerminal(int(os.Stdout.Fd())) {
-		enc.SetEscapeHTML(false)
-	}
-	return enc.Encode(out)
+func initConfig() {
+	// TODO Cobra allows us to do extra stuff here at init
+	// time if we ever want to take advantage.
 }
+
+const logLevel = "log-level"
 
 func before(cmd *cobra.Command) error {
 	strLvl, err := cmd.Flags().GetString(logLevel)
@@ -196,4 +132,24 @@ func after(cmd *cobra.Command) error {
 		_, _ = store.Shutdown(false)
 	}
 	return nil
+}
+
+func main() {
+	if buildah.InitReexec() {
+		return
+	}
+
+	// Hard code TMPDIR functions to use $TMPDIR or /var/tmp
+	os.Setenv("TMPDIR", parse.GetTempDir())
+
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err)
+		exitCode := cli.ExecErrorCodeGeneric
+		if ee, ok := (errors.Cause(err)).(*exec.ExitError); ok {
+			if w, ok := ee.Sys().(syscall.WaitStatus); ok {
+				exitCode = w.ExitStatus()
+			}
+		}
+		os.Exit(exitCode)
+	}
 }

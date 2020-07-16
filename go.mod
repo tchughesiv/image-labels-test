@@ -12,6 +12,7 @@ require (
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/opencontainers/image-spec v1.0.2-0.20190823105129-775207bd45b6
+	github.com/opencontainers/runtime-spec v1.0.3-0.20200520003142-237cc4f519e2
 	github.com/openshift/imagebuilder v1.1.6 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/seccomp/containers-golang v0.5.0 // indirect
