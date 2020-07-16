@@ -3,8 +3,8 @@ FROM registry.access.redhat.com/ubi8
 # Don't include container-selinux and remove
 # directories used by yum that are just taking
 # up space.
-RUN useradd build; yum -y update; yum -y reinstall shadow-utils && \
-        yum -y install buildah fuse-overlayfs && \ # --exclude container-selinux
+RUN useradd build && yum -y update && \
+        yum -y install containers-common fuse-overlayfs && \
         rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 # Adjust storage.conf to enable Fuse storage.
