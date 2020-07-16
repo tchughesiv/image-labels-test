@@ -1,8 +1,6 @@
+# reference file - https://github.com/containers/buildah/blob/v1.14.10/contrib/buildahimage/stable/Dockerfile
 FROM registry.access.redhat.com/ubi8
 
-# Don't include container-selinux and remove
-# directories used by yum that are just taking
-# up space.
 RUN useradd build && yum -y update --security --sec-severity=Important --sec-severity=Critical && \
         yum -y install containers-common fuse-overlayfs --setopt=tsflags=nodocs && \
         rm -rf /var/cache /var/log/dnf* /var/log/yum.*
