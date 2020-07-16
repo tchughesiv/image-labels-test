@@ -75,9 +75,9 @@ func inspectCmd(c *cobra.Command, args []string, iopts inspectResults) error {
 }
 
 func parseFindings(builder *buildah.Builder) {
-	println()
 	println(builder.FromImage)
 	println(builder.FromImageID)
+	println()
 	ociConfig := builder.OCIv1.Config
 	if ociConfig.Labels != nil {
 		println("IMAGE LABELS:")
@@ -92,4 +92,5 @@ func parseFindings(builder *buildah.Builder) {
 			}
 		}
 	}
+	println()
 }
