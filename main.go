@@ -1,90 +1,155 @@
 package main
 
 import (
-	"context"
+	"fmt"
 	"os"
-	"strings"
-	"time"
+	"os/exec"
+	"syscall"
 
-	"github.com/containers/libpod/v2/libpod/image"
+	"github.com/containers/buildah"
+	"github.com/containers/buildah/pkg/cli"
+	"github.com/containers/buildah/pkg/parse"
 	"github.com/containers/storage"
+	"github.com/containers/storage/pkg/unshare"
+	ispecs "github.com/opencontainers/image-spec/specs-go"
+	rspecs "github.com/opencontainers/runtime-spec/specs-go"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	debug := true
-	args := os.Args[1:]
-	logrus.SetLevel(logrus.ErrorLevel)
-	if debug {
-		logrus.SetLevel(logrus.DebugLevel)
+type globalFlags struct {
+	Debug             bool
+	LogLevel          string
+	Root              string
+	RunRoot           string
+	StorageDriver     string
+	RegistriesConf    string
+	RegistriesConfDir string
+	DefaultMountsFile string
+	StorageOpts       []string
+	UserNSUID         []string
+	UserNSGID         []string
+}
+
+var rootCmd = &cobra.Command{
+	Use:  "buildah",
+	Long: "A tool that facilitates building OCI images",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		return before(cmd)
+	},
+	PersistentPostRunE: func(cmd *cobra.Command, args []string) error {
+		return after(cmd)
+	},
+	SilenceUsage:  true,
+	SilenceErrors: true,
+}
+
+var (
+	globalFlagResults globalFlags
+)
+
+func init() {
+	logrus.SetFormatter(&logrus.TextFormatter{DisableTimestamp: true})
+
+	var (
+		defaultStoreDriverOptions []string
+	)
+	storageOptions, err := storage.DefaultStoreOptions(false, 0)
+	if err != nil {
+		logrus.Errorf(err.Error())
+		os.Exit(1)
+
 	}
-	// RUN mkdir -p /var/lib/containers/overlay-images /var/lib/containers/overlay-layers; touch /var/lib/containers/overlay-images/images.lock; touch /var/lib/containers/overlay-layers/layers.lock
-	if err := imageLookup(args); err != nil {
-		logrus.Error(err)
+
+	if len(storageOptions.GraphDriverOptions) > 0 {
+		optionSlice := storageOptions.GraphDriverOptions[:]
+		defaultStoreDriverOptions = optionSlice
+	}
+
+	cobra.OnInitialize(initConfig)
+	//rootCmd.TraverseChildren = true
+	rootCmd.Version = fmt.Sprintf("%s (image-spec %s, runtime-spec %s)", buildah.Version, ispecs.Version, rspecs.Version)
+	rootCmd.PersistentFlags().BoolVar(&globalFlagResults.Debug, "debug", false, "print debugging information")
+	// TODO Need to allow for environment variable
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RegistriesConf, "registries-conf", "", "path to registries.conf file (not usually used)")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RegistriesConfDir, "registries-conf-dir", "", "path to registries.conf.d directory (not usually used)")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.Root, "root", storageOptions.GraphRoot, "storage root dir")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.RunRoot, "runroot", storageOptions.RunRoot, "storage state dir")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.StorageDriver, "storage-driver", storageOptions.GraphDriverName, "storage-driver")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.StorageOpts, "storage-opt", defaultStoreDriverOptions, "storage driver option")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.UserNSUID, "userns-uid-map", []string{}, "default `ctrID:hostID:length` UID mapping to use")
+	rootCmd.PersistentFlags().StringSliceVar(&globalFlagResults.UserNSGID, "userns-gid-map", []string{}, "default `ctrID:hostID:length` GID mapping to use")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.DefaultMountsFile, "default-mounts-file", "", "path to default mounts file")
+	rootCmd.PersistentFlags().StringVar(&globalFlagResults.LogLevel, logLevel, "error", `The log level to be used. Either "debug", "info", "warn" or "error".`)
+
+	if err := rootCmd.PersistentFlags().MarkHidden("debug"); err != nil {
+		logrus.Fatalf("unable to mark debug flag as hidden: %v", err)
+	}
+	if err := rootCmd.PersistentFlags().MarkHidden("default-mounts-file"); err != nil {
+		logrus.Fatalf("unable to mark default-mounts-file flag as hidden: %v", err)
 	}
 }
 
-// test product type/version aggregation from pod image lookup
-func imageLookup(args []string) (retErr error) {
-	// ERRO[0000] error opening "/var/lib/containers/storage/storage.lock": permission denied
-	// https://github.com/containers/storage/blob/ed28f2457e2f57cb3d3f2f4029a85f72b35370ab/store.go#L656-L664
-	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
-	if err != nil {
-		return err
-	}
-	println("graphroot is " + storeOptions.GraphRoot)
-	println("graphdriver is " + storeOptions.GraphDriverName)
-	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
-	if err != nil {
-		return err
-	}
-	/*
-			images, err := ir.GetImages()
-			if err != nil {
-				return err
-			}
-		for _, img := range images {
-			println()
-			println(img.InputName)
-			for _, name := range img.Names() {
-				println(name)
-			}
-		}
-	*/
-	for _, imgName := range args {
-		img, err := ir.NewFromLocal(imgName)
-		if err != nil {
-			return err
-		}
-		println()
-		println(img.InputName)
-		for _, name := range img.Names() {
-			println(name)
-		}
+func initConfig() {
+	// TODO Cobra allows us to do extra stuff here at init
+	// time if we ever want to take advantage.
+}
 
-		ctx := context.Background()
-		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
-		defer cancel()
-		// get inspect image data
-		imgData, err := img.Inspect(ctx)
+const logLevel = "log-level"
+
+func before(cmd *cobra.Command) error {
+	strLvl, err := cmd.Flags().GetString(logLevel)
+	if err != nil {
+		return err
+	}
+	logrusLvl, err := logrus.ParseLevel(strLvl)
+	if err != nil {
+		return errors.Wrapf(err, "unable to parse log level")
+	}
+	logrus.SetLevel(logrusLvl)
+	if globalFlagResults.Debug {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
+
+	switch cmd.Use {
+	case "", "help", "version", "mount":
+		return nil
+	}
+	unshare.MaybeReexecUsingUserNamespace(false)
+	return nil
+}
+
+func after(cmd *cobra.Command) error {
+	if needToShutdownStore {
+		store, err := getStore(cmd)
 		if err != nil {
 			return err
 		}
-		println(imgData.ID)
-		if imgData.Labels != nil {
-			println("IMAGE LABELS:")
-			for key, val := range imgData.Labels {
-				if strings.Contains(key, "org.jboss.") {
-					println(key + "=" + val)
-				}
-			}
-			for key, val := range imgData.Labels {
-				if strings.Contains(key, "com.redhat.") {
-					println(key + "=" + val)
-				}
+		_, _ = store.Shutdown(false)
+	}
+	return nil
+}
+
+func main() {
+	if buildah.InitReexec() {
+		return
+	}
+
+	// Hard code TMPDIR functions to use $TMPDIR or /var/tmp
+	os.Setenv("TMPDIR", parse.GetTempDir())
+
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err)
+		exitCode := cli.ExecErrorCodeGeneric
+		if ee, ok := (errors.Cause(err)).(*exec.ExitError); ok {
+			if w, ok := ee.Sys().(syscall.WaitStatus); ok {
+				exitCode = w.ExitStatus()
 			}
 		}
+		os.Exit(exitCode)
 	}
-	println()
-	return retErr
 }
