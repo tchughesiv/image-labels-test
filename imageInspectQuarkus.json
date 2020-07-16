@@ -1,0 +1,893 @@
+{
+    "Type": "buildah 0.0.1",
+    "FromImage": "image-registry.openshift-image-registry.svc:5000/babak/code-with-quarkus@sha256:8cfa54de80976d5c04e1155f0d5229e2539841ea40d70c7516c4fc61525e4441",
+    "FromImageID": "6bd173521e83a0802a4ea3211c7b9b2bc633614b8ace501506b7ed2c55ef2cdb",
+    "FromImageDigest": "sha256:8cfa54de80976d5c04e1155f0d5229e2539841ea40d70c7516c4fc61525e4441",
+    "Config": "{\"created\":\"2020-07-16T17:57:21.315417127Z\",\"container\":\"46303f7396bb33c22c7d17c0db26cd4dcf086fc7838aa25878e48d3afc00c8e9\",\"container_config\":{\"Hostname\":\"6dbf8e3f94bd\",\"Domainname\":\"\",\"User\":\"1000\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8778/tcp\":{},\"9779/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"JOLOKIA_VERSION=1.6.0\",\"PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"JAVA_DATA_DIR=/deployments/data\",\"JAVA_HOME=/etc/alternatives/jre\",\"OPENSHIFT_BUILD_NAME=code-with-quarkus-1\",\"OPENSHIFT_BUILD_NAMESPACE=babak\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"sha256:819f30d29caeab79ee57c3794ad830f3f7d281d293c9f917a0d71b4f3c41b4c5\",\"Volumes\":{},\"WorkingDir\":\"/opt/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"com.redhat.deployments-dir\":\"/deployments\",\"com.redhat.dev-mode\":\"JAVA_DEBUG:false\",\"com.redhat.dev-mode.port\":\"JAVA_DEBUG_PORT:5005\",\"io.fabric8.s2i.version.jolokia\":\"1.6.0\",\"io.fabric8.s2i.version.maven\":\"3.5.4\",\"io.fabric8.s2i.version.prometheus.jmx_exporter\":\"0.3.1\",\"io.k8s.description\":\"Platform for building and running plain Java applications (fat-jar and flat classpath)\",\"io.k8s.display-name\":\"Java Applications\",\"io.openshift.build.image\":\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\",\"io.openshift.build.source-location\":\"/tmp/build/inputs\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java\",\"org.jboss.deployments-dir\":\"/deployments\",\"org.label-schema.schema-version\":\"= 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531\"}},\"config\":{\"Hostname\":\"6dbf8e3f94bd\",\"Domainname\":\"\",\"User\":\"1000\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8778/tcp\":{},\"9779/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"JOLOKIA_VERSION=1.6.0\",\"PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"JAVA_DATA_DIR=/deployments/data\",\"JAVA_HOME=/etc/alternatives/jre\",\"OPENSHIFT_BUILD_NAME=code-with-quarkus-1\",\"OPENSHIFT_BUILD_NAMESPACE=babak\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"sha256:819f30d29caeab79ee57c3794ad830f3f7d281d293c9f917a0d71b4f3c41b4c5\",\"Volumes\":{},\"WorkingDir\":\"/opt/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"com.redhat.deployments-dir\":\"/deployments\",\"com.redhat.dev-mode\":\"JAVA_DEBUG:false\",\"com.redhat.dev-mode.port\":\"JAVA_DEBUG_PORT:5005\",\"io.fabric8.s2i.version.jolokia\":\"1.6.0\",\"io.fabric8.s2i.version.maven\":\"3.5.4\",\"io.fabric8.s2i.version.prometheus.jmx_exporter\":\"0.3.1\",\"io.k8s.description\":\"Platform for building and running plain Java applications (fat-jar and flat classpath)\",\"io.k8s.display-name\":\"Java Applications\",\"io.openshift.build.image\":\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\",\"io.openshift.build.source-location\":\"/tmp/build/inputs\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java\",\"org.jboss.deployments-dir\":\"/deployments\",\"org.label-schema.schema-version\":\"= 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531\"}},\"parent\":\"sha256:10a0b9c43308245e87a0fef6a30e759ff18af8412788b28161afe04d02c990aa\",\"rootfs\":{\"type\":\"layers\",\"diff_ids\":[\"sha256:bcc97fbfc9e1a709f0eb78c1da59caeb65f43dc32cd5deeb12b8c1784e5b8237\",\"sha256:4dbf6f8e65266ba1033bc933ee4e93e4fd5a5c912fe312ae0bd4b8349315c927\",\"sha256:f515d4009e192a6828b8cbfe57b44282f3f7f94dd770bc24fbd7667b46104402\",\"sha256:187068858de1a1bfe819ed2daaedf98165ff4f2fdfa94688a8a210da94d03a5a\",\"sha256:67f9d5f2d2adc7dc615c7c19bb2d359cc09542507f580aa1063447b11888f2c1\",\"sha256:b0e776602fb699508f7542ff79226b4989e682fc6e8c9ad333c415036163dada\",\"sha256:99655d012649feba5723686e613e7043b922763d4eb32bf8e8fbae22197eb422\",\"sha256:5cf9675b81d43432c669204eaa519cdff16a72ad77840c65422a9140f9069259\",\"sha256:204e205d6a8324c6f2bf8a87c03da3aae056c7a3a05891e78ae10bb9669ec506\",\"sha256:44c74b2d9af7905e9a48f6b246fada3954d8bfaffa632b4e3d4544dd7d098e0b\",\"sha256:b0de499398d7e7688d6dc462fd86c3700e450d71056b0914f20c044ecb3900c8\",\"sha256:78420d45c69a3114490cd4860235c1be87f4aa1e8e184fb25ae87f90df6a9e5e\",\"sha256:3a434c575e66c5a1f9fe176493327c1217530137ccb9ce9358ec9eaf15c85f5e\",\"sha256:2db8eeafbb0b25b92852fe703d16dbac4f4a0e463f414c48622d983ef35c56d8\",\"sha256:c449eef1f16d06a058450cd46b21c68209faf63df9fafc96beff11b1f6741436\",\"sha256:f0846f8cd3abd07702a44e64f03fec86d4c1ed62ce34800d966dd612dc9aa706\",\"sha256:26c09e9455ec6c4f46ebe63c8bd0e66462a66387e84c47b57960903ec561e651\",\"sha256:b46fa3b23bb587f36e2ddc7302325a0656612d3e25f1014ea1542ef1a7a11f18\",\"sha256:4cc79f25d469867943caffadc23cbbf04fd0fa197f9970971a895e87e9144c2f\",\"sha256:836bbeb65dcf9de34a98d9d5014115599a2d0a96f45a2c27467d163e6a2e65a1\",\"sha256:f38efdc13981a067765e03cbdb73a0396c13f201d60fe2af5587dcf3f2c7e4a8\",\"sha256:e42b0d9852430bd040f4dd7c456f5e0f8a7610bea08c17d0a8052ca65fcfc7dd\",\"sha256:e91c797f917d1e3084836cd13ba0d6328951853f08da7d9791af51ce22bcc7e1\",\"sha256:7d50259746069942dcb4ea1a531ed9d7294f264597519ef328a84cadd66a5a12\",\"sha256:51386491d44c61f9d5572100154a295567450ffcdaf49a4a3cce1fab90583604\",\"sha256:5bb5ed700464aea14a6c007e8fea1c7a2dd8776701bb72b91332f3cf9abe7291\",\"sha256:ea4303838b91086e60b029ba431696a3f174de9343ba03e450b968e3ad006d89\"]},\"history\":[{\"created\":\"2018-08-06T19:23:47.777790217Z\",\"created_by\":\"/bin/sh -c #(nop) ADD file:8f4b3be0c1427b158f7c30bad27af0d1bded0af60935cf8f0789286439ebdde9 in / \"},{\"created\":\"2018-08-06T19:23:48.340172923Z\",\"created_by\":\"/bin/sh -c #(nop)  LABEL org.label-schema.schema-version== 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531\",\"empty_layer\":true},{\"created\":\"2018-08-06T19:23:48.587844012Z\",\"created_by\":\"/bin/sh -c #(nop)  CMD [\\\"/bin/bash\\\"]\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:20:32.77084922Z\",\"created_by\":\"/bin/sh -c #(nop)  ENV JOLOKIA_VERSION=1.6.0 PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i AB_JOLOKIA_PASSWORD_RANDOM=true AB_JOLOKIA_AUTH_OPENSHIFT=true JAVA_DATA_DIR=/deployments/data\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:20:32.90779785Z\",\"created_by\":\"/bin/sh -c #(nop)  LABEL io.fabric8.s2i.version.maven=3.5.4 io.fabric8.s2i.version.jolokia=1.6.0 io.fabric8.s2i.version.prometheus.jmx_exporter=0.3.1 io.k8s.description=Platform for building and running plain Java applications (fat-jar and flat classpath) io.k8s.display-name=Java Applications io.openshift.tags=builder,java io.openshift.s2i.scripts-url=image:///usr/local/s2i io.openshift.s2i.destination=/tmp org.jboss.deployments-dir=/deployments com.redhat.deployments-dir=/deployments com.redhat.dev-mode=JAVA_DEBUG:false com.redhat.dev-mode.port=JAVA_DEBUG_PORT:5005\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:20:33.055548217Z\",\"created_by\":\"/bin/sh -c #(nop)  USER [root]\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:00.442971794Z\",\"created_by\":\"/bin/sh -c yum install -y        java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5        java-1.8.0-openjdk-devel-1.8.0.181-3.b13.el7_5   \\u0026\\u0026 curl https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz |     tar -xzf - -C /opt   \\u0026\\u0026 ln -s /opt/apache-maven-3.5.4 /opt/maven   \\u0026\\u0026 ln -s /opt/maven/bin/mvn /usr/bin/mvn   \\u0026\\u0026 groupadd -r jboss -g 1000   \\u0026\\u0026 useradd -u 1000 -r -g jboss -m -d /opt/jboss -s /sbin/nologin -c \\\"JBoss user\\\" jboss   \\u0026\\u0026 chmod 755 /opt/jboss\"},{\"created\":\"2018-08-10T06:21:03.002536686Z\",\"created_by\":\"/bin/sh -c #(nop)  ENV JAVA_HOME=/etc/alternatives/jre\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:03.582682225Z\",\"created_by\":\"/bin/sh -c echo securerandom.source=file:/dev/urandom \\u003e\\u003e /usr/lib/jvm/java/jre/lib/security/java.security  \\u0026\\u0026 usermod -g root -G jboss jboss\"},{\"created\":\"2018-08-10T06:21:04.338099714Z\",\"created_by\":\"/bin/sh -c mkdir -p /opt/prometheus/etc   \\u0026\\u0026 curl http://central.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1/jmx_prometheus_javaagent-0.3.1.jar           -o /opt/prometheus/jmx_prometheus_javaagent.jar\"},{\"created\":\"2018-08-10T06:21:04.507029704Z\",\"created_by\":\"/bin/sh -c #(nop) ADD file:cc9ffaaf5f31be1d0bb7797b84a4be2e2b135f083495d0c752c448b313021e00 in /opt/prometheus/prometheus-opts \"},{\"created\":\"2018-08-10T06:21:04.635044194Z\",\"created_by\":\"/bin/sh -c #(nop) ADD file:46997d380f1276df160c26b5d14892add12cc3350b8e947dc49b9ed68d5088fa in /opt/prometheus/prometheus-config.yml \"},{\"created\":\"2018-08-10T06:21:05.19996533Z\",\"created_by\":\"/bin/sh -c chmod 444 /opt/prometheus/jmx_prometheus_javaagent.jar   \\u0026\\u0026 chmod 444 /opt/prometheus/prometheus-config.yml   \\u0026\\u0026 chmod 755 /opt/prometheus/prometheus-opts   \\u0026\\u0026 chmod 775 /opt/prometheus/etc   \\u0026\\u0026 chgrp root /opt/prometheus/etc\"},{\"created\":\"2018-08-10T06:21:05.3900465Z\",\"created_by\":\"/bin/sh -c #(nop)  EXPOSE 9779/tcp\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:06.052610795Z\",\"created_by\":\"/bin/sh -c mkdir -p /opt/jolokia/etc  \\u0026\\u0026 curl http://central.maven.org/maven2/org/jolokia/jolokia-jvm/1.6.0/jolokia-jvm-1.6.0-agent.jar          -o /opt/jolokia/jolokia.jar\"},{\"created\":\"2018-08-10T06:21:06.213858518Z\",\"created_by\":\"/bin/sh -c #(nop) ADD file:20d1b7ad5792b7043d2173c5adbfb36128e350c3e4f1de662eb5fedc8de78690 in /opt/jolokia/jolokia-opts \"},{\"created\":\"2018-08-10T06:21:06.76929855Z\",\"created_by\":\"/bin/sh -c chmod 444 /opt/jolokia/jolokia.jar  \\u0026\\u0026 chmod 755 /opt/jolokia/jolokia-opts  \\u0026\\u0026 chmod 775 /opt/jolokia/etc  \\u0026\\u0026 chgrp root /opt/jolokia/etc\"},{\"created\":\"2018-08-10T06:21:06.941753122Z\",\"created_by\":\"/bin/sh -c #(nop)  EXPOSE 8778/tcp\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:09.984943411Z\",\"created_by\":\"/bin/sh -c yum install -y rsync\"},{\"created\":\"2018-08-10T06:21:10.810471695Z\",\"created_by\":\"/bin/sh -c #(nop) COPY dir:f71e4ff79ca6711c123e4d0e0c1709c81d2501dd734a9aa8da2c143efdfabcbc in /usr/local/s2i \"},{\"created\":\"2018-08-10T06:21:11.373038532Z\",\"created_by\":\"/bin/sh -c chmod 755 /usr/local/s2i/*\"},{\"created\":\"2018-08-10T06:21:11.545034774Z\",\"created_by\":\"/bin/sh -c #(nop) ADD file:f683176116737d9ca4763bcb84f97bf338d60428d7e8908cc0132cdb6b30b50c in /usr/local/s2i/usage.txt \"},{\"created\":\"2018-08-10T06:21:11.672976298Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:24f0b2ac121e2a1b3ac5505da8b8198efce7c349cb2bc4cf4d86b5f422afff49 in /opt/run-java/ \"},{\"created\":\"2018-08-10T06:21:12.161274679Z\",\"created_by\":\"/bin/sh -c chmod 755 /opt/run-java/run-java.sh\"},{\"created\":\"2018-08-10T06:21:12.315777357Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:7350b171f7fbb9f4617e344596f229b01cbe126527408a2c0fab8940d5c15bba in /opt/run-java/run-env.sh \"},{\"created\":\"2018-08-10T06:21:12.824478862Z\",\"created_by\":\"/bin/sh -c chmod 755 /opt/run-java/run-env.sh\"},{\"created\":\"2018-08-10T06:21:13.364537001Z\",\"created_by\":\"/bin/sh -c mkdir -p /opt/fuse/licenses\"},{\"created\":\"2018-08-10T06:21:13.516460129Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:c009e5b64604caf78ca68f5ea72e7a8ae15450311df0359596a4ab7995ff35ae in /opt/fuse/licenses \"},{\"created\":\"2018-08-10T06:21:13.644379078Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:14f20216df01b39bf1416a4e3d30d88474c6c79f455921bca96aa3f5f4eacc6e in /opt/fuse/licenses \"},{\"created\":\"2018-08-10T06:21:13.768371708Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:5ca973f093e8ce8757cab61eb4cee078e4097ae06aee8be71c45a8bdfeb28bc0 in /opt/fuse/licenses \"},{\"created\":\"2018-08-10T06:21:13.896549122Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:e3d06ea3678bc3fff5932e48209cc6891ca8ce600dafcfb25ca91c941703b680 in /opt/fuse/licenses \"},{\"created\":\"2018-08-10T06:21:14.424474346Z\",\"created_by\":\"/bin/sh -c mkdir -p /deployments/data  \\u0026\\u0026 chmod -R \\\"g+rwX\\\" /deployments  \\u0026\\u0026 chown -R jboss:root /deployments  \\u0026\\u0026 chmod -R \\\"g+rwX\\\" /opt/jboss  \\u0026\\u0026 chown -R jboss:root /opt/jboss  \\u0026\\u0026 chmod 664 /etc/passwd\"},{\"created\":\"2018-08-10T06:21:14.588245456Z\",\"created_by\":\"/bin/sh -c #(nop) WORKDIR /opt/jboss\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:14.739715539Z\",\"created_by\":\"/bin/sh -c #(nop)  USER [1000]\",\"empty_layer\":true},{\"created\":\"2018-08-10T06:21:15.280015239Z\",\"created_by\":\"/bin/sh -c mkdir -p /opt/jboss/.m2\"},{\"created\":\"2018-08-10T06:21:15.444772027Z\",\"created_by\":\"/bin/sh -c #(nop) COPY file:fc77ba0afd924d51abb6023c39f0e564469969b651bb6f518da98c85b4fbdf4e in /opt/jboss/.m2/settings.xml \"},{\"created\":\"2018-08-10T06:21:15.551490461Z\",\"created_by\":\"/bin/sh -c #(nop)  CMD [\\\"/usr/local/s2i/run\\\"]\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:17.472382431Z\",\"created_by\":\"/bin/sh -c #(nop) LABEL \\\"io.openshift.build.image\\\"=\\\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\\\"       \\\"io.openshift.build.source-location\\\"=\\\"/tmp/build/inputs\\\"\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:17.472465745Z\",\"created_by\":\"/bin/sh -c #(nop) ENV OPENSHIFT_BUILD_NAME=\\\"code-with-quarkus-1\\\"     OPENSHIFT_BUILD_NAMESPACE=\\\"babak\\\"\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:17.472523176Z\",\"created_by\":\"/bin/sh -c #(nop) USER root\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:19.019899155Z\",\"created_by\":\"/bin/sh -c #(nop) COPY dir:61f448bf4eb4575a572014a3f44dec3f8d68447226f7a7402e178cae61886583 in /tmp/src \",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:20.187874092Z\",\"created_by\":\"/bin/sh -c chown -R 1000:0 /tmp/src\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:20.187969419Z\",\"created_by\":\"/bin/sh -c #(nop) USER 1000\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:21.314740932Z\",\"created_by\":\"/bin/sh -c /usr/local/s2i/assemble\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:57:21.315417127Z\",\"created_by\":\"/bin/sh -c #(nop) CMD /usr/local/s2i/run\"}]}",
+    "Manifest": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":14433,\"digest\":\"sha256:6bd173521e83a0802a4ea3211c7b9b2bc633614b8ace501506b7ed2c55ef2cdb\"},\"layers\":[{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":74693368,\"digest\":\"sha256:7dc0dca2b1516961d6b3200564049db0a6e0410b370bb2189e2efae0d368616f\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":106561320,\"digest\":\"sha256:2fab1038512362e3ecc53bd088d15b573554228e40c3a8c2b6a35dd034319d2e\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":13068,\"digest\":\"sha256:1fdb7be5b7e04d78c06271c1fac140923afd7fceba99e670b43a4caeb9e12fe7\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":310154,\"digest\":\"sha256:4b44292fec1d5442d3e34b2c3adb430711d3c231d70954a9d42d2217f959a3a5\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":637,\"digest\":\"sha256:e39e0acd05a132f9851ab89aa9c003304acaea15239d98a49e66e1a9c82b897f\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":1262,\"digest\":\"sha256:d6fff4bb0996493ee898ab513fb1570c797d91a2d77365cb8ce60ac995d61bef\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":312033,\"digest\":\"sha256:edd9a9ea806e66bc81595225cd1eb3587288e91c3f0e7a0e050d090529da899c\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":417450,\"digest\":\"sha256:3b0e4c1fe20d89e41b1a408582ee80141da58e972e1e85bb67a3bbb723ac5ba9\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":1267,\"digest\":\"sha256:279f9e9dbd81ffde465c3613c8d42668fc7f90fcdd0ea2fc096dbe00d422ad3d\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":418839,\"digest\":\"sha256:444e42197d037bb691bfd39d27dadfddf260c117e648287ffdc9d06b0deb9d9b\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":31051908,\"digest\":\"sha256:728478adadf64ecda279321079d1a30871f5698a434390e893f4924cc3f3772b\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":4097,\"digest\":\"sha256:d4feb2e228a99db66740d8a9716e7b425433cf76c6c96ace4a240a48db221b8a\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":4092,\"digest\":\"sha256:e7886c5bdbb9091a5fa49fecb3b38ae3b86b4dc3d898f35868ea304a07858fb1\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":5002,\"digest\":\"sha256:05562722fbe3d386d80195a54e38230f27521c800957f861bbe1f4aa16cee114\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":6539,\"digest\":\"sha256:8700ab630acc9c991fd8c8d432f57f8e667269a84cd6c4af7d4bb526d39a7fbd\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":6535,\"digest\":\"sha256:5d7ab3a9fe79144e76610e53f4ca88facbaa68d78a4d652dd5ec01b502a15eef\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":237,\"digest\":\"sha256:6df3de21051156aa46c745270ffeaad903d7457901761412c7fdcc175425b11c\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":234,\"digest\":\"sha256:86b908ea994135af1d1bebc0376f820b833c710d54db966a6248bfce32a6b0f0\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":134,\"digest\":\"sha256:b1e6f56c9412d73422f3d05a420d8060910afe9df98eab26b64f2419be72b41c\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":309,\"digest\":\"sha256:5530204593f325c8521f77e253694b97cc5390d1e14d0493c35b0eb75f4bc57e\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":491,\"digest\":\"sha256:2bea995a93a4fb35fffb148c149f340652271706e452e5f49f7e30988b29fe33\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":701,\"digest\":\"sha256:dd32d2faf9fa4e68f8a7195033339c20be7c43096b490f7e39f9778f2ba56e8b\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":4121,\"digest\":\"sha256:dde9d98ac0071a3ace2bd04b41e99cc440183f7a26083253bb612b9e5955f8ee\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":860,\"digest\":\"sha256:94b14ee1a4420484af51a0ed5b9457c83523b69effdbfa57c0704501f19431e2\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":140,\"digest\":\"sha256:854b48faa47da5e0268a141d13643359a3c01bbf40ef42361d2ee884715ecdf8\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":401,\"digest\":\"sha256:b66cdd67f702702aa7ed8edbac84cd97c42e8357a5a519e57d94dc23ad144a64\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar.gzip\",\"size\":17701263,\"digest\":\"sha256:3c9d31f0a129aa9d5f6eccbea476c31e40fb267a16ea49842c43e9d19a736400\"}]}",
+    "Container": "",
+    "ContainerID": "",
+    "MountPoint": "",
+    "ProcessLabel": "",
+    "MountLabel": "",
+    "ImageAnnotations": {},
+    "ImageCreatedBy": "",
+    "OCIv1": {
+        "created": "2020-07-16T17:57:21.315417127Z",
+        "architecture": "amd64",
+        "os": "linux",
+        "config": {
+            "User": "1000",
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "JOLOKIA_VERSION=1.6.0",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JAVA_HOME=/etc/alternatives/jre",
+                "OPENSHIFT_BUILD_NAME=code-with-quarkus-1",
+                "OPENSHIFT_BUILD_NAMESPACE=babak"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "WorkingDir": "/opt/jboss",
+            "Labels": {
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "io.fabric8.s2i.version.jolokia": "1.6.0",
+                "io.fabric8.s2i.version.maven": "3.5.4",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.image": "fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.label-schema.schema-version": "= 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531"
+            }
+        },
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:bcc97fbfc9e1a709f0eb78c1da59caeb65f43dc32cd5deeb12b8c1784e5b8237",
+                "sha256:4dbf6f8e65266ba1033bc933ee4e93e4fd5a5c912fe312ae0bd4b8349315c927",
+                "sha256:f515d4009e192a6828b8cbfe57b44282f3f7f94dd770bc24fbd7667b46104402",
+                "sha256:187068858de1a1bfe819ed2daaedf98165ff4f2fdfa94688a8a210da94d03a5a",
+                "sha256:67f9d5f2d2adc7dc615c7c19bb2d359cc09542507f580aa1063447b11888f2c1",
+                "sha256:b0e776602fb699508f7542ff79226b4989e682fc6e8c9ad333c415036163dada",
+                "sha256:99655d012649feba5723686e613e7043b922763d4eb32bf8e8fbae22197eb422",
+                "sha256:5cf9675b81d43432c669204eaa519cdff16a72ad77840c65422a9140f9069259",
+                "sha256:204e205d6a8324c6f2bf8a87c03da3aae056c7a3a05891e78ae10bb9669ec506",
+                "sha256:44c74b2d9af7905e9a48f6b246fada3954d8bfaffa632b4e3d4544dd7d098e0b",
+                "sha256:b0de499398d7e7688d6dc462fd86c3700e450d71056b0914f20c044ecb3900c8",
+                "sha256:78420d45c69a3114490cd4860235c1be87f4aa1e8e184fb25ae87f90df6a9e5e",
+                "sha256:3a434c575e66c5a1f9fe176493327c1217530137ccb9ce9358ec9eaf15c85f5e",
+                "sha256:2db8eeafbb0b25b92852fe703d16dbac4f4a0e463f414c48622d983ef35c56d8",
+                "sha256:c449eef1f16d06a058450cd46b21c68209faf63df9fafc96beff11b1f6741436",
+                "sha256:f0846f8cd3abd07702a44e64f03fec86d4c1ed62ce34800d966dd612dc9aa706",
+                "sha256:26c09e9455ec6c4f46ebe63c8bd0e66462a66387e84c47b57960903ec561e651",
+                "sha256:b46fa3b23bb587f36e2ddc7302325a0656612d3e25f1014ea1542ef1a7a11f18",
+                "sha256:4cc79f25d469867943caffadc23cbbf04fd0fa197f9970971a895e87e9144c2f",
+                "sha256:836bbeb65dcf9de34a98d9d5014115599a2d0a96f45a2c27467d163e6a2e65a1",
+                "sha256:f38efdc13981a067765e03cbdb73a0396c13f201d60fe2af5587dcf3f2c7e4a8",
+                "sha256:e42b0d9852430bd040f4dd7c456f5e0f8a7610bea08c17d0a8052ca65fcfc7dd",
+                "sha256:e91c797f917d1e3084836cd13ba0d6328951853f08da7d9791af51ce22bcc7e1",
+                "sha256:7d50259746069942dcb4ea1a531ed9d7294f264597519ef328a84cadd66a5a12",
+                "sha256:51386491d44c61f9d5572100154a295567450ffcdaf49a4a3cce1fab90583604",
+                "sha256:5bb5ed700464aea14a6c007e8fea1c7a2dd8776701bb72b91332f3cf9abe7291",
+                "sha256:ea4303838b91086e60b029ba431696a3f174de9343ba03e450b968e3ad006d89"
+            ]
+        },
+        "history": [
+            {
+                "created": "2018-08-06T19:23:47.777790217Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:8f4b3be0c1427b158f7c30bad27af0d1bded0af60935cf8f0789286439ebdde9 in / "
+            },
+            {
+                "created": "2018-08-06T19:23:48.340172923Z",
+                "created_by": "/bin/sh -c #(nop)  LABEL org.label-schema.schema-version== 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-06T19:23:48.587844012Z",
+                "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:32.77084922Z",
+                "created_by": "/bin/sh -c #(nop)  ENV JOLOKIA_VERSION=1.6.0 PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i AB_JOLOKIA_PASSWORD_RANDOM=true AB_JOLOKIA_AUTH_OPENSHIFT=true JAVA_DATA_DIR=/deployments/data",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:32.90779785Z",
+                "created_by": "/bin/sh -c #(nop)  LABEL io.fabric8.s2i.version.maven=3.5.4 io.fabric8.s2i.version.jolokia=1.6.0 io.fabric8.s2i.version.prometheus.jmx_exporter=0.3.1 io.k8s.description=Platform for building and running plain Java applications (fat-jar and flat classpath) io.k8s.display-name=Java Applications io.openshift.tags=builder,java io.openshift.s2i.scripts-url=image:///usr/local/s2i io.openshift.s2i.destination=/tmp org.jboss.deployments-dir=/deployments com.redhat.deployments-dir=/deployments com.redhat.dev-mode=JAVA_DEBUG:false com.redhat.dev-mode.port=JAVA_DEBUG_PORT:5005",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:33.055548217Z",
+                "created_by": "/bin/sh -c #(nop)  USER [root]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:00.442971794Z",
+                "created_by": "/bin/sh -c yum install -y        java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5        java-1.8.0-openjdk-devel-1.8.0.181-3.b13.el7_5   && curl https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz |     tar -xzf - -C /opt   && ln -s /opt/apache-maven-3.5.4 /opt/maven   && ln -s /opt/maven/bin/mvn /usr/bin/mvn   && groupadd -r jboss -g 1000   && useradd -u 1000 -r -g jboss -m -d /opt/jboss -s /sbin/nologin -c \"JBoss user\" jboss   && chmod 755 /opt/jboss"
+            },
+            {
+                "created": "2018-08-10T06:21:03.002536686Z",
+                "created_by": "/bin/sh -c #(nop)  ENV JAVA_HOME=/etc/alternatives/jre",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:03.582682225Z",
+                "created_by": "/bin/sh -c echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security  && usermod -g root -G jboss jboss"
+            },
+            {
+                "created": "2018-08-10T06:21:04.338099714Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/prometheus/etc   && curl http://central.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1/jmx_prometheus_javaagent-0.3.1.jar           -o /opt/prometheus/jmx_prometheus_javaagent.jar"
+            },
+            {
+                "created": "2018-08-10T06:21:04.507029704Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:cc9ffaaf5f31be1d0bb7797b84a4be2e2b135f083495d0c752c448b313021e00 in /opt/prometheus/prometheus-opts "
+            },
+            {
+                "created": "2018-08-10T06:21:04.635044194Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:46997d380f1276df160c26b5d14892add12cc3350b8e947dc49b9ed68d5088fa in /opt/prometheus/prometheus-config.yml "
+            },
+            {
+                "created": "2018-08-10T06:21:05.19996533Z",
+                "created_by": "/bin/sh -c chmod 444 /opt/prometheus/jmx_prometheus_javaagent.jar   && chmod 444 /opt/prometheus/prometheus-config.yml   && chmod 755 /opt/prometheus/prometheus-opts   && chmod 775 /opt/prometheus/etc   && chgrp root /opt/prometheus/etc"
+            },
+            {
+                "created": "2018-08-10T06:21:05.3900465Z",
+                "created_by": "/bin/sh -c #(nop)  EXPOSE 9779/tcp",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:06.052610795Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/jolokia/etc  && curl http://central.maven.org/maven2/org/jolokia/jolokia-jvm/1.6.0/jolokia-jvm-1.6.0-agent.jar          -o /opt/jolokia/jolokia.jar"
+            },
+            {
+                "created": "2018-08-10T06:21:06.213858518Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:20d1b7ad5792b7043d2173c5adbfb36128e350c3e4f1de662eb5fedc8de78690 in /opt/jolokia/jolokia-opts "
+            },
+            {
+                "created": "2018-08-10T06:21:06.76929855Z",
+                "created_by": "/bin/sh -c chmod 444 /opt/jolokia/jolokia.jar  && chmod 755 /opt/jolokia/jolokia-opts  && chmod 775 /opt/jolokia/etc  && chgrp root /opt/jolokia/etc"
+            },
+            {
+                "created": "2018-08-10T06:21:06.941753122Z",
+                "created_by": "/bin/sh -c #(nop)  EXPOSE 8778/tcp",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:09.984943411Z",
+                "created_by": "/bin/sh -c yum install -y rsync"
+            },
+            {
+                "created": "2018-08-10T06:21:10.810471695Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:f71e4ff79ca6711c123e4d0e0c1709c81d2501dd734a9aa8da2c143efdfabcbc in /usr/local/s2i "
+            },
+            {
+                "created": "2018-08-10T06:21:11.373038532Z",
+                "created_by": "/bin/sh -c chmod 755 /usr/local/s2i/*"
+            },
+            {
+                "created": "2018-08-10T06:21:11.545034774Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:f683176116737d9ca4763bcb84f97bf338d60428d7e8908cc0132cdb6b30b50c in /usr/local/s2i/usage.txt "
+            },
+            {
+                "created": "2018-08-10T06:21:11.672976298Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:24f0b2ac121e2a1b3ac5505da8b8198efce7c349cb2bc4cf4d86b5f422afff49 in /opt/run-java/ "
+            },
+            {
+                "created": "2018-08-10T06:21:12.161274679Z",
+                "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-java.sh"
+            },
+            {
+                "created": "2018-08-10T06:21:12.315777357Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:7350b171f7fbb9f4617e344596f229b01cbe126527408a2c0fab8940d5c15bba in /opt/run-java/run-env.sh "
+            },
+            {
+                "created": "2018-08-10T06:21:12.824478862Z",
+                "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-env.sh"
+            },
+            {
+                "created": "2018-08-10T06:21:13.364537001Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/fuse/licenses"
+            },
+            {
+                "created": "2018-08-10T06:21:13.516460129Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:c009e5b64604caf78ca68f5ea72e7a8ae15450311df0359596a4ab7995ff35ae in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.644379078Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:14f20216df01b39bf1416a4e3d30d88474c6c79f455921bca96aa3f5f4eacc6e in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.768371708Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:5ca973f093e8ce8757cab61eb4cee078e4097ae06aee8be71c45a8bdfeb28bc0 in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.896549122Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:e3d06ea3678bc3fff5932e48209cc6891ca8ce600dafcfb25ca91c941703b680 in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:14.424474346Z",
+                "created_by": "/bin/sh -c mkdir -p /deployments/data  && chmod -R \"g+rwX\" /deployments  && chown -R jboss:root /deployments  && chmod -R \"g+rwX\" /opt/jboss  && chown -R jboss:root /opt/jboss  && chmod 664 /etc/passwd"
+            },
+            {
+                "created": "2018-08-10T06:21:14.588245456Z",
+                "created_by": "/bin/sh -c #(nop) WORKDIR /opt/jboss",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:14.739715539Z",
+                "created_by": "/bin/sh -c #(nop)  USER [1000]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:15.280015239Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/jboss/.m2"
+            },
+            {
+                "created": "2018-08-10T06:21:15.444772027Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:fc77ba0afd924d51abb6023c39f0e564469969b651bb6f518da98c85b4fbdf4e in /opt/jboss/.m2/settings.xml "
+            },
+            {
+                "created": "2018-08-10T06:21:15.551490461Z",
+                "created_by": "/bin/sh -c #(nop)  CMD [\"/usr/local/s2i/run\"]",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472382431Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472465745Z",
+                "created_by": "/bin/sh -c #(nop) ENV OPENSHIFT_BUILD_NAME=\"code-with-quarkus-1\"     OPENSHIFT_BUILD_NAMESPACE=\"babak\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472523176Z",
+                "created_by": "/bin/sh -c #(nop) USER root",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:19.019899155Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:61f448bf4eb4575a572014a3f44dec3f8d68447226f7a7402e178cae61886583 in /tmp/src ",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:20.187874092Z",
+                "created_by": "/bin/sh -c chown -R 1000:0 /tmp/src",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:20.187969419Z",
+                "created_by": "/bin/sh -c #(nop) USER 1000",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:21.314740932Z",
+                "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:21.315417127Z",
+                "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+            }
+        ]
+    },
+    "Docker": {
+        "created": "2020-07-16T17:57:21.315417127Z",
+        "container": "46303f7396bb33c22c7d17c0db26cd4dcf086fc7838aa25878e48d3afc00c8e9",
+        "container_config": {
+            "Hostname": "6dbf8e3f94bd",
+            "Domainname": "",
+            "User": "1000",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "JOLOKIA_VERSION=1.6.0",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JAVA_HOME=/etc/alternatives/jre",
+                "OPENSHIFT_BUILD_NAME=code-with-quarkus-1",
+                "OPENSHIFT_BUILD_NAMESPACE=babak"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:819f30d29caeab79ee57c3794ad830f3f7d281d293c9f917a0d71b4f3c41b4c5",
+            "Volumes": {},
+            "WorkingDir": "/opt/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "io.fabric8.s2i.version.jolokia": "1.6.0",
+                "io.fabric8.s2i.version.maven": "3.5.4",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.image": "fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.label-schema.schema-version": "= 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531"
+            }
+        },
+        "config": {
+            "Hostname": "6dbf8e3f94bd",
+            "Domainname": "",
+            "User": "1000",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "JOLOKIA_VERSION=1.6.0",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JAVA_HOME=/etc/alternatives/jre",
+                "OPENSHIFT_BUILD_NAME=code-with-quarkus-1",
+                "OPENSHIFT_BUILD_NAMESPACE=babak"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:819f30d29caeab79ee57c3794ad830f3f7d281d293c9f917a0d71b4f3c41b4c5",
+            "Volumes": {},
+            "WorkingDir": "/opt/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "io.fabric8.s2i.version.jolokia": "1.6.0",
+                "io.fabric8.s2i.version.maven": "3.5.4",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.image": "fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.label-schema.schema-version": "= 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531"
+            }
+        },
+        "architecture": "amd64",
+        "os": "linux",
+        "parent": "sha256:10a0b9c43308245e87a0fef6a30e759ff18af8412788b28161afe04d02c990aa",
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:bcc97fbfc9e1a709f0eb78c1da59caeb65f43dc32cd5deeb12b8c1784e5b8237",
+                "sha256:4dbf6f8e65266ba1033bc933ee4e93e4fd5a5c912fe312ae0bd4b8349315c927",
+                "sha256:f515d4009e192a6828b8cbfe57b44282f3f7f94dd770bc24fbd7667b46104402",
+                "sha256:187068858de1a1bfe819ed2daaedf98165ff4f2fdfa94688a8a210da94d03a5a",
+                "sha256:67f9d5f2d2adc7dc615c7c19bb2d359cc09542507f580aa1063447b11888f2c1",
+                "sha256:b0e776602fb699508f7542ff79226b4989e682fc6e8c9ad333c415036163dada",
+                "sha256:99655d012649feba5723686e613e7043b922763d4eb32bf8e8fbae22197eb422",
+                "sha256:5cf9675b81d43432c669204eaa519cdff16a72ad77840c65422a9140f9069259",
+                "sha256:204e205d6a8324c6f2bf8a87c03da3aae056c7a3a05891e78ae10bb9669ec506",
+                "sha256:44c74b2d9af7905e9a48f6b246fada3954d8bfaffa632b4e3d4544dd7d098e0b",
+                "sha256:b0de499398d7e7688d6dc462fd86c3700e450d71056b0914f20c044ecb3900c8",
+                "sha256:78420d45c69a3114490cd4860235c1be87f4aa1e8e184fb25ae87f90df6a9e5e",
+                "sha256:3a434c575e66c5a1f9fe176493327c1217530137ccb9ce9358ec9eaf15c85f5e",
+                "sha256:2db8eeafbb0b25b92852fe703d16dbac4f4a0e463f414c48622d983ef35c56d8",
+                "sha256:c449eef1f16d06a058450cd46b21c68209faf63df9fafc96beff11b1f6741436",
+                "sha256:f0846f8cd3abd07702a44e64f03fec86d4c1ed62ce34800d966dd612dc9aa706",
+                "sha256:26c09e9455ec6c4f46ebe63c8bd0e66462a66387e84c47b57960903ec561e651",
+                "sha256:b46fa3b23bb587f36e2ddc7302325a0656612d3e25f1014ea1542ef1a7a11f18",
+                "sha256:4cc79f25d469867943caffadc23cbbf04fd0fa197f9970971a895e87e9144c2f",
+                "sha256:836bbeb65dcf9de34a98d9d5014115599a2d0a96f45a2c27467d163e6a2e65a1",
+                "sha256:f38efdc13981a067765e03cbdb73a0396c13f201d60fe2af5587dcf3f2c7e4a8",
+                "sha256:e42b0d9852430bd040f4dd7c456f5e0f8a7610bea08c17d0a8052ca65fcfc7dd",
+                "sha256:e91c797f917d1e3084836cd13ba0d6328951853f08da7d9791af51ce22bcc7e1",
+                "sha256:7d50259746069942dcb4ea1a531ed9d7294f264597519ef328a84cadd66a5a12",
+                "sha256:51386491d44c61f9d5572100154a295567450ffcdaf49a4a3cce1fab90583604",
+                "sha256:5bb5ed700464aea14a6c007e8fea1c7a2dd8776701bb72b91332f3cf9abe7291",
+                "sha256:ea4303838b91086e60b029ba431696a3f174de9343ba03e450b968e3ad006d89"
+            ]
+        },
+        "history": [
+            {
+                "created": "2018-08-06T19:23:47.777790217Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:8f4b3be0c1427b158f7c30bad27af0d1bded0af60935cf8f0789286439ebdde9 in / "
+            },
+            {
+                "created": "2018-08-06T19:23:48.340172923Z",
+                "created_by": "/bin/sh -c #(nop)  LABEL org.label-schema.schema-version== 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-06T19:23:48.587844012Z",
+                "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:32.77084922Z",
+                "created_by": "/bin/sh -c #(nop)  ENV JOLOKIA_VERSION=1.6.0 PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i AB_JOLOKIA_PASSWORD_RANDOM=true AB_JOLOKIA_AUTH_OPENSHIFT=true JAVA_DATA_DIR=/deployments/data",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:32.90779785Z",
+                "created_by": "/bin/sh -c #(nop)  LABEL io.fabric8.s2i.version.maven=3.5.4 io.fabric8.s2i.version.jolokia=1.6.0 io.fabric8.s2i.version.prometheus.jmx_exporter=0.3.1 io.k8s.description=Platform for building and running plain Java applications (fat-jar and flat classpath) io.k8s.display-name=Java Applications io.openshift.tags=builder,java io.openshift.s2i.scripts-url=image:///usr/local/s2i io.openshift.s2i.destination=/tmp org.jboss.deployments-dir=/deployments com.redhat.deployments-dir=/deployments com.redhat.dev-mode=JAVA_DEBUG:false com.redhat.dev-mode.port=JAVA_DEBUG_PORT:5005",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:20:33.055548217Z",
+                "created_by": "/bin/sh -c #(nop)  USER [root]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:00.442971794Z",
+                "created_by": "/bin/sh -c yum install -y        java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5        java-1.8.0-openjdk-devel-1.8.0.181-3.b13.el7_5   && curl https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz |     tar -xzf - -C /opt   && ln -s /opt/apache-maven-3.5.4 /opt/maven   && ln -s /opt/maven/bin/mvn /usr/bin/mvn   && groupadd -r jboss -g 1000   && useradd -u 1000 -r -g jboss -m -d /opt/jboss -s /sbin/nologin -c \"JBoss user\" jboss   && chmod 755 /opt/jboss"
+            },
+            {
+                "created": "2018-08-10T06:21:03.002536686Z",
+                "created_by": "/bin/sh -c #(nop)  ENV JAVA_HOME=/etc/alternatives/jre",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:03.582682225Z",
+                "created_by": "/bin/sh -c echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security  && usermod -g root -G jboss jboss"
+            },
+            {
+                "created": "2018-08-10T06:21:04.338099714Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/prometheus/etc   && curl http://central.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1/jmx_prometheus_javaagent-0.3.1.jar           -o /opt/prometheus/jmx_prometheus_javaagent.jar"
+            },
+            {
+                "created": "2018-08-10T06:21:04.507029704Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:cc9ffaaf5f31be1d0bb7797b84a4be2e2b135f083495d0c752c448b313021e00 in /opt/prometheus/prometheus-opts "
+            },
+            {
+                "created": "2018-08-10T06:21:04.635044194Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:46997d380f1276df160c26b5d14892add12cc3350b8e947dc49b9ed68d5088fa in /opt/prometheus/prometheus-config.yml "
+            },
+            {
+                "created": "2018-08-10T06:21:05.19996533Z",
+                "created_by": "/bin/sh -c chmod 444 /opt/prometheus/jmx_prometheus_javaagent.jar   && chmod 444 /opt/prometheus/prometheus-config.yml   && chmod 755 /opt/prometheus/prometheus-opts   && chmod 775 /opt/prometheus/etc   && chgrp root /opt/prometheus/etc"
+            },
+            {
+                "created": "2018-08-10T06:21:05.3900465Z",
+                "created_by": "/bin/sh -c #(nop)  EXPOSE 9779/tcp",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:06.052610795Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/jolokia/etc  && curl http://central.maven.org/maven2/org/jolokia/jolokia-jvm/1.6.0/jolokia-jvm-1.6.0-agent.jar          -o /opt/jolokia/jolokia.jar"
+            },
+            {
+                "created": "2018-08-10T06:21:06.213858518Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:20d1b7ad5792b7043d2173c5adbfb36128e350c3e4f1de662eb5fedc8de78690 in /opt/jolokia/jolokia-opts "
+            },
+            {
+                "created": "2018-08-10T06:21:06.76929855Z",
+                "created_by": "/bin/sh -c chmod 444 /opt/jolokia/jolokia.jar  && chmod 755 /opt/jolokia/jolokia-opts  && chmod 775 /opt/jolokia/etc  && chgrp root /opt/jolokia/etc"
+            },
+            {
+                "created": "2018-08-10T06:21:06.941753122Z",
+                "created_by": "/bin/sh -c #(nop)  EXPOSE 8778/tcp",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:09.984943411Z",
+                "created_by": "/bin/sh -c yum install -y rsync"
+            },
+            {
+                "created": "2018-08-10T06:21:10.810471695Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:f71e4ff79ca6711c123e4d0e0c1709c81d2501dd734a9aa8da2c143efdfabcbc in /usr/local/s2i "
+            },
+            {
+                "created": "2018-08-10T06:21:11.373038532Z",
+                "created_by": "/bin/sh -c chmod 755 /usr/local/s2i/*"
+            },
+            {
+                "created": "2018-08-10T06:21:11.545034774Z",
+                "created_by": "/bin/sh -c #(nop) ADD file:f683176116737d9ca4763bcb84f97bf338d60428d7e8908cc0132cdb6b30b50c in /usr/local/s2i/usage.txt "
+            },
+            {
+                "created": "2018-08-10T06:21:11.672976298Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:24f0b2ac121e2a1b3ac5505da8b8198efce7c349cb2bc4cf4d86b5f422afff49 in /opt/run-java/ "
+            },
+            {
+                "created": "2018-08-10T06:21:12.161274679Z",
+                "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-java.sh"
+            },
+            {
+                "created": "2018-08-10T06:21:12.315777357Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:7350b171f7fbb9f4617e344596f229b01cbe126527408a2c0fab8940d5c15bba in /opt/run-java/run-env.sh "
+            },
+            {
+                "created": "2018-08-10T06:21:12.824478862Z",
+                "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-env.sh"
+            },
+            {
+                "created": "2018-08-10T06:21:13.364537001Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/fuse/licenses"
+            },
+            {
+                "created": "2018-08-10T06:21:13.516460129Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:c009e5b64604caf78ca68f5ea72e7a8ae15450311df0359596a4ab7995ff35ae in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.644379078Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:14f20216df01b39bf1416a4e3d30d88474c6c79f455921bca96aa3f5f4eacc6e in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.768371708Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:5ca973f093e8ce8757cab61eb4cee078e4097ae06aee8be71c45a8bdfeb28bc0 in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:13.896549122Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:e3d06ea3678bc3fff5932e48209cc6891ca8ce600dafcfb25ca91c941703b680 in /opt/fuse/licenses "
+            },
+            {
+                "created": "2018-08-10T06:21:14.424474346Z",
+                "created_by": "/bin/sh -c mkdir -p /deployments/data  && chmod -R \"g+rwX\" /deployments  && chown -R jboss:root /deployments  && chmod -R \"g+rwX\" /opt/jboss  && chown -R jboss:root /opt/jboss  && chmod 664 /etc/passwd"
+            },
+            {
+                "created": "2018-08-10T06:21:14.588245456Z",
+                "created_by": "/bin/sh -c #(nop) WORKDIR /opt/jboss",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:14.739715539Z",
+                "created_by": "/bin/sh -c #(nop)  USER [1000]",
+                "empty_layer": true
+            },
+            {
+                "created": "2018-08-10T06:21:15.280015239Z",
+                "created_by": "/bin/sh -c mkdir -p /opt/jboss/.m2"
+            },
+            {
+                "created": "2018-08-10T06:21:15.444772027Z",
+                "created_by": "/bin/sh -c #(nop) COPY file:fc77ba0afd924d51abb6023c39f0e564469969b651bb6f518da98c85b4fbdf4e in /opt/jboss/.m2/settings.xml "
+            },
+            {
+                "created": "2018-08-10T06:21:15.551490461Z",
+                "created_by": "/bin/sh -c #(nop)  CMD [\"/usr/local/s2i/run\"]",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472382431Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472465745Z",
+                "created_by": "/bin/sh -c #(nop) ENV OPENSHIFT_BUILD_NAME=\"code-with-quarkus-1\"     OPENSHIFT_BUILD_NAMESPACE=\"babak\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:17.472523176Z",
+                "created_by": "/bin/sh -c #(nop) USER root",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:19.019899155Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:61f448bf4eb4575a572014a3f44dec3f8d68447226f7a7402e178cae61886583 in /tmp/src ",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:20.187874092Z",
+                "created_by": "/bin/sh -c chown -R 1000:0 /tmp/src",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:20.187969419Z",
+                "created_by": "/bin/sh -c #(nop) USER 1000",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:21.314740932Z",
+                "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:57:21.315417127Z",
+                "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+            }
+        ]
+    },
+    "DefaultMountsFilePath": "",
+    "Isolation": "IsolationDefault",
+    "NamespaceOptions": [
+        {
+            "Name": "cgroup",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "ipc",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "mount",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "network",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "pid",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "user",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "uts",
+            "Host": false,
+            "Path": ""
+        }
+    ],
+    "Capabilities": null,
+    "ConfigureNetwork": "NetworkDefault",
+    "CNIPluginPath": "",
+    "CNIConfigDir": "",
+    "IDMappingOptions": {
+        "HostUIDMapping": true,
+        "HostGIDMapping": true,
+        "UIDMap": [],
+        "GIDMap": []
+    },
+    "History": [
+        {
+            "created": "2018-08-06T19:23:47.777790217Z",
+            "created_by": "/bin/sh -c #(nop) ADD file:8f4b3be0c1427b158f7c30bad27af0d1bded0af60935cf8f0789286439ebdde9 in / "
+        },
+        {
+            "created": "2018-08-06T19:23:48.340172923Z",
+            "created_by": "/bin/sh -c #(nop)  LABEL org.label-schema.schema-version== 1.0     org.label-schema.name=CentOS Base Image     org.label-schema.vendor=CentOS     org.label-schema.license=GPLv2     org.label-schema.build-date=20180531",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-06T19:23:48.587844012Z",
+            "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:20:32.77084922Z",
+            "created_by": "/bin/sh -c #(nop)  ENV JOLOKIA_VERSION=1.6.0 PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i AB_JOLOKIA_PASSWORD_RANDOM=true AB_JOLOKIA_AUTH_OPENSHIFT=true JAVA_DATA_DIR=/deployments/data",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:20:32.90779785Z",
+            "created_by": "/bin/sh -c #(nop)  LABEL io.fabric8.s2i.version.maven=3.5.4 io.fabric8.s2i.version.jolokia=1.6.0 io.fabric8.s2i.version.prometheus.jmx_exporter=0.3.1 io.k8s.description=Platform for building and running plain Java applications (fat-jar and flat classpath) io.k8s.display-name=Java Applications io.openshift.tags=builder,java io.openshift.s2i.scripts-url=image:///usr/local/s2i io.openshift.s2i.destination=/tmp org.jboss.deployments-dir=/deployments com.redhat.deployments-dir=/deployments com.redhat.dev-mode=JAVA_DEBUG:false com.redhat.dev-mode.port=JAVA_DEBUG_PORT:5005",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:20:33.055548217Z",
+            "created_by": "/bin/sh -c #(nop)  USER [root]",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:00.442971794Z",
+            "created_by": "/bin/sh -c yum install -y        java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5        java-1.8.0-openjdk-devel-1.8.0.181-3.b13.el7_5   && curl https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz |     tar -xzf - -C /opt   && ln -s /opt/apache-maven-3.5.4 /opt/maven   && ln -s /opt/maven/bin/mvn /usr/bin/mvn   && groupadd -r jboss -g 1000   && useradd -u 1000 -r -g jboss -m -d /opt/jboss -s /sbin/nologin -c \"JBoss user\" jboss   && chmod 755 /opt/jboss"
+        },
+        {
+            "created": "2018-08-10T06:21:03.002536686Z",
+            "created_by": "/bin/sh -c #(nop)  ENV JAVA_HOME=/etc/alternatives/jre",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:03.582682225Z",
+            "created_by": "/bin/sh -c echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security  && usermod -g root -G jboss jboss"
+        },
+        {
+            "created": "2018-08-10T06:21:04.338099714Z",
+            "created_by": "/bin/sh -c mkdir -p /opt/prometheus/etc   && curl http://central.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.3.1/jmx_prometheus_javaagent-0.3.1.jar           -o /opt/prometheus/jmx_prometheus_javaagent.jar"
+        },
+        {
+            "created": "2018-08-10T06:21:04.507029704Z",
+            "created_by": "/bin/sh -c #(nop) ADD file:cc9ffaaf5f31be1d0bb7797b84a4be2e2b135f083495d0c752c448b313021e00 in /opt/prometheus/prometheus-opts "
+        },
+        {
+            "created": "2018-08-10T06:21:04.635044194Z",
+            "created_by": "/bin/sh -c #(nop) ADD file:46997d380f1276df160c26b5d14892add12cc3350b8e947dc49b9ed68d5088fa in /opt/prometheus/prometheus-config.yml "
+        },
+        {
+            "created": "2018-08-10T06:21:05.19996533Z",
+            "created_by": "/bin/sh -c chmod 444 /opt/prometheus/jmx_prometheus_javaagent.jar   && chmod 444 /opt/prometheus/prometheus-config.yml   && chmod 755 /opt/prometheus/prometheus-opts   && chmod 775 /opt/prometheus/etc   && chgrp root /opt/prometheus/etc"
+        },
+        {
+            "created": "2018-08-10T06:21:05.3900465Z",
+            "created_by": "/bin/sh -c #(nop)  EXPOSE 9779/tcp",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:06.052610795Z",
+            "created_by": "/bin/sh -c mkdir -p /opt/jolokia/etc  && curl http://central.maven.org/maven2/org/jolokia/jolokia-jvm/1.6.0/jolokia-jvm-1.6.0-agent.jar          -o /opt/jolokia/jolokia.jar"
+        },
+        {
+            "created": "2018-08-10T06:21:06.213858518Z",
+            "created_by": "/bin/sh -c #(nop) ADD file:20d1b7ad5792b7043d2173c5adbfb36128e350c3e4f1de662eb5fedc8de78690 in /opt/jolokia/jolokia-opts "
+        },
+        {
+            "created": "2018-08-10T06:21:06.76929855Z",
+            "created_by": "/bin/sh -c chmod 444 /opt/jolokia/jolokia.jar  && chmod 755 /opt/jolokia/jolokia-opts  && chmod 775 /opt/jolokia/etc  && chgrp root /opt/jolokia/etc"
+        },
+        {
+            "created": "2018-08-10T06:21:06.941753122Z",
+            "created_by": "/bin/sh -c #(nop)  EXPOSE 8778/tcp",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:09.984943411Z",
+            "created_by": "/bin/sh -c yum install -y rsync"
+        },
+        {
+            "created": "2018-08-10T06:21:10.810471695Z",
+            "created_by": "/bin/sh -c #(nop) COPY dir:f71e4ff79ca6711c123e4d0e0c1709c81d2501dd734a9aa8da2c143efdfabcbc in /usr/local/s2i "
+        },
+        {
+            "created": "2018-08-10T06:21:11.373038532Z",
+            "created_by": "/bin/sh -c chmod 755 /usr/local/s2i/*"
+        },
+        {
+            "created": "2018-08-10T06:21:11.545034774Z",
+            "created_by": "/bin/sh -c #(nop) ADD file:f683176116737d9ca4763bcb84f97bf338d60428d7e8908cc0132cdb6b30b50c in /usr/local/s2i/usage.txt "
+        },
+        {
+            "created": "2018-08-10T06:21:11.672976298Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:24f0b2ac121e2a1b3ac5505da8b8198efce7c349cb2bc4cf4d86b5f422afff49 in /opt/run-java/ "
+        },
+        {
+            "created": "2018-08-10T06:21:12.161274679Z",
+            "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-java.sh"
+        },
+        {
+            "created": "2018-08-10T06:21:12.315777357Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:7350b171f7fbb9f4617e344596f229b01cbe126527408a2c0fab8940d5c15bba in /opt/run-java/run-env.sh "
+        },
+        {
+            "created": "2018-08-10T06:21:12.824478862Z",
+            "created_by": "/bin/sh -c chmod 755 /opt/run-java/run-env.sh"
+        },
+        {
+            "created": "2018-08-10T06:21:13.364537001Z",
+            "created_by": "/bin/sh -c mkdir -p /opt/fuse/licenses"
+        },
+        {
+            "created": "2018-08-10T06:21:13.516460129Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:c009e5b64604caf78ca68f5ea72e7a8ae15450311df0359596a4ab7995ff35ae in /opt/fuse/licenses "
+        },
+        {
+            "created": "2018-08-10T06:21:13.644379078Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:14f20216df01b39bf1416a4e3d30d88474c6c79f455921bca96aa3f5f4eacc6e in /opt/fuse/licenses "
+        },
+        {
+            "created": "2018-08-10T06:21:13.768371708Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:5ca973f093e8ce8757cab61eb4cee078e4097ae06aee8be71c45a8bdfeb28bc0 in /opt/fuse/licenses "
+        },
+        {
+            "created": "2018-08-10T06:21:13.896549122Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:e3d06ea3678bc3fff5932e48209cc6891ca8ce600dafcfb25ca91c941703b680 in /opt/fuse/licenses "
+        },
+        {
+            "created": "2018-08-10T06:21:14.424474346Z",
+            "created_by": "/bin/sh -c mkdir -p /deployments/data  && chmod -R \"g+rwX\" /deployments  && chown -R jboss:root /deployments  && chmod -R \"g+rwX\" /opt/jboss  && chown -R jboss:root /opt/jboss  && chmod 664 /etc/passwd"
+        },
+        {
+            "created": "2018-08-10T06:21:14.588245456Z",
+            "created_by": "/bin/sh -c #(nop) WORKDIR /opt/jboss",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:14.739715539Z",
+            "created_by": "/bin/sh -c #(nop)  USER [1000]",
+            "empty_layer": true
+        },
+        {
+            "created": "2018-08-10T06:21:15.280015239Z",
+            "created_by": "/bin/sh -c mkdir -p /opt/jboss/.m2"
+        },
+        {
+            "created": "2018-08-10T06:21:15.444772027Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:fc77ba0afd924d51abb6023c39f0e564469969b651bb6f518da98c85b4fbdf4e in /opt/jboss/.m2/settings.xml "
+        },
+        {
+            "created": "2018-08-10T06:21:15.551490461Z",
+            "created_by": "/bin/sh -c #(nop)  CMD [\"/usr/local/s2i/run\"]",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:17.472382431Z",
+            "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"fabric8/s2i-java@sha256:a6ba8a6e76ebd75f99f2431fe0ec39a82985bc21c0f9bd56021deca1ffde520c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:17.472465745Z",
+            "created_by": "/bin/sh -c #(nop) ENV OPENSHIFT_BUILD_NAME=\"code-with-quarkus-1\"     OPENSHIFT_BUILD_NAMESPACE=\"babak\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:17.472523176Z",
+            "created_by": "/bin/sh -c #(nop) USER root",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:19.019899155Z",
+            "created_by": "/bin/sh -c #(nop) COPY dir:61f448bf4eb4575a572014a3f44dec3f8d68447226f7a7402e178cae61886583 in /tmp/src ",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:20.187874092Z",
+            "created_by": "/bin/sh -c chown -R 1000:0 /tmp/src",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:20.187969419Z",
+            "created_by": "/bin/sh -c #(nop) USER 1000",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:21.314740932Z",
+            "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:57:21.315417127Z",
+            "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+        },
+        {
+            "created": "2020-07-16T18:00:38.266082791Z"
+        }
+    ],
+    "Devices": null
+}

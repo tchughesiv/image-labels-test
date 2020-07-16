@@ -1,0 +1,451 @@
+{
+    "Type": "buildah 0.0.1",
+    "FromImage": "image-registry.openshift-image-registry.svc:5000/tommy/camel-k-kit-bs88jp4c6o1f895s3fn0@sha256:17f4d950788fd7c99e706dd155df8f061c6724cf83ba158a684e68d7c2921952",
+    "FromImageID": "16f27f0941a14668039aafb4b2366c13e2c55ea917f1589864291f8ed7ebef58",
+    "FromImageDigest": "sha256:17f4d950788fd7c99e706dd155df8f061c6724cf83ba158a684e68d7c2921952",
+    "Config": "{\"created\":\"2020-07-16T17:11:58.8503827Z\",\"container\":\"6fe352251df5bcd9e22716e07584c41550bf8f7688cb83f42f0847b7b51552a1\",\"container_config\":{\"Hostname\":\"4bf2f21922e8\",\"Domainname\":\"\",\"User\":\"1000\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8080/tcp\":{},\"8443/tcp\":{},\"8778/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"container=oci\",\"HOME=/home/jboss\",\"JAVA_HOME=/usr/lib/jvm/java-11\",\"JAVA_VENDOR=openjdk\",\"JAVA_VERSION=11\",\"JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk\",\"AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml\",\"JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"AB_JOLOKIA_HTTPS=true\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia\",\"JOLOKIA_VERSION=1.6.2\",\"JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/\",\"MAVEN_VERSION=3.6\",\"S2I_SOURCE_DEPLOYMENTS_FILTER=*.jar\",\"JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/\",\"JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy\",\"JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm\",\"JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/\",\"JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/\",\"JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i\",\"JAVA_DATA_DIR=/deployments/data\",\"JBOSS_CONTAINER_JAVA_RUN_MODULE=/opt/jboss/container/java/run\",\"JBOSS_CONTAINER_JAVA_S2I_MODULE=/opt/jboss/container/java/s2i\",\"JBOSS_IMAGE_NAME=ubi8/openjdk-11\",\"JBOSS_IMAGE_VERSION=1.3\",\"OPENSHIFT_BUILD_NAME=camel-k-kit-bs88jp4c6o1f895s3fn0-1\",\"OPENSHIFT_BUILD_NAMESPACE=tommy\"],\"Cmd\":[\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"ff1e1c6cd27c4148a505664744d085ccbe4d509441c7fe45c5ce5c89e4fbb79d\",\"Volumes\":{},\"WorkingDir\":\"/home/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"architecture\":\"x86_64\",\"build-date\":\"2020-06-25T19:48:23.713669\",\"com.redhat.build-host\":\"cpt-1008.osbs.prod.upshift.rdu2.redhat.com\",\"com.redhat.component\":\"openjdk-11-ubi8-container\",\"com.redhat.license_terms\":\"https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI\",\"description\":\"Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11\",\"distribution-scope\":\"public\",\"io.cekit.version\":\"3.6.0\",\"io.fabric8.s2i.version.jolokia\":\"1.6.2-redhat-00002\",\"io.fabric8.s2i.version.maven\":\"3.6\",\"io.k8s.description\":\"Platform for building and running plain Java applications (fat-jar and flat classpath)\",\"io.k8s.display-name\":\"Java Applications\",\"io.openshift.build.name\":\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\",\"io.openshift.build.namespace\":\"tommy\",\"io.openshift.expose-services\":\"\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java\",\"maintainer\":\"Red Hat OpenJDK \\u003copenjdk@redhat.com\\u003e\",\"name\":\"ubi8/openjdk-11\",\"org.jboss.container.deployments-dir\":\"/deployments\",\"org.jboss.product\":\"openjdk\",\"org.jboss.product.openjdk.version\":\"11\",\"org.jboss.product.version\":\"11\",\"release\":\"3.1593114401\",\"summary\":\"Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11\",\"url\":\"https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/openjdk-11/images/1.3-3.1593114401\",\"usage\":\"https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/\",\"vcs-ref\":\"266b4ce1d8eb6120db116ac30fb9d3cfcbbe1cc0\",\"vcs-type\":\"git\",\"vendor\":\"Red Hat, Inc.\",\"version\":\"1.3\"}},\"config\":{\"Hostname\":\"4bf2f21922e8\",\"Domainname\":\"\",\"User\":\"1000\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8080/tcp\":{},\"8443/tcp\":{},\"8778/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"container=oci\",\"HOME=/home/jboss\",\"JAVA_HOME=/usr/lib/jvm/java-11\",\"JAVA_VENDOR=openjdk\",\"JAVA_VERSION=11\",\"JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk\",\"AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml\",\"JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"AB_JOLOKIA_HTTPS=true\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia\",\"JOLOKIA_VERSION=1.6.2\",\"JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/\",\"MAVEN_VERSION=3.6\",\"S2I_SOURCE_DEPLOYMENTS_FILTER=*.jar\",\"JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/\",\"JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy\",\"JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm\",\"JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/\",\"JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/\",\"JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i\",\"JAVA_DATA_DIR=/deployments/data\",\"JBOSS_CONTAINER_JAVA_RUN_MODULE=/opt/jboss/container/java/run\",\"JBOSS_CONTAINER_JAVA_S2I_MODULE=/opt/jboss/container/java/s2i\",\"JBOSS_IMAGE_NAME=ubi8/openjdk-11\",\"JBOSS_IMAGE_VERSION=1.3\",\"OPENSHIFT_BUILD_NAME=camel-k-kit-bs88jp4c6o1f895s3fn0-1\",\"OPENSHIFT_BUILD_NAMESPACE=tommy\"],\"Cmd\":[\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"ff1e1c6cd27c4148a505664744d085ccbe4d509441c7fe45c5ce5c89e4fbb79d\",\"Volumes\":{},\"WorkingDir\":\"/home/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"architecture\":\"x86_64\",\"build-date\":\"2020-06-25T19:48:23.713669\",\"com.redhat.build-host\":\"cpt-1008.osbs.prod.upshift.rdu2.redhat.com\",\"com.redhat.component\":\"openjdk-11-ubi8-container\",\"com.redhat.license_terms\":\"https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI\",\"description\":\"Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11\",\"distribution-scope\":\"public\",\"io.cekit.version\":\"3.6.0\",\"io.fabric8.s2i.version.jolokia\":\"1.6.2-redhat-00002\",\"io.fabric8.s2i.version.maven\":\"3.6\",\"io.k8s.description\":\"Platform for building and running plain Java applications (fat-jar and flat classpath)\",\"io.k8s.display-name\":\"Java Applications\",\"io.openshift.build.name\":\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\",\"io.openshift.build.namespace\":\"tommy\",\"io.openshift.expose-services\":\"\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java\",\"maintainer\":\"Red Hat OpenJDK \\u003copenjdk@redhat.com\\u003e\",\"name\":\"ubi8/openjdk-11\",\"org.jboss.container.deployments-dir\":\"/deployments\",\"org.jboss.product\":\"openjdk\",\"org.jboss.product.openjdk.version\":\"11\",\"org.jboss.product.version\":\"11\",\"release\":\"3.1593114401\",\"summary\":\"Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11\",\"url\":\"https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/openjdk-11/images/1.3-3.1593114401\",\"usage\":\"https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/\",\"vcs-ref\":\"266b4ce1d8eb6120db116ac30fb9d3cfcbbe1cc0\",\"vcs-type\":\"git\",\"vendor\":\"Red Hat, Inc.\",\"version\":\"1.3\"}},\"parent\":\"sha256:68ab2bb9fe6a99c3be293e3de6fcd62957982c979e4c121d0f4089cfff57e159\",\"rootfs\":{\"type\":\"layers\",\"diff_ids\":[\"sha256:f9ddbcc4e7954a705b700c35c5e5beceabd86af121a6e561d86437a8512a6be6\",\"sha256:90c2e42f948b524cf98005073e0b0aa2065160abf9e8b314976c064e270d92ac\",\"sha256:b63f259a5e01e24733ed2be18966636b66d55107e79415aa7f802830a51a603f\",\"sha256:f4115da7dc1f028226691a809fdd267b9ef200547134c2b65687cf3af0ee614d\"]},\"history\":[{\"created\":\"2020-06-25T19:42:26.481544695Z\",\"comment\":\"Imported from -\"},{\"created\":\"2020-06-25T19:42:34.833547Z\"},{\"created\":\"2020-06-25T19:57:14.22292Z\"},{\"created\":\"2020-07-16T17:11:56.403498279Z\",\"created_by\":\"/bin/sh -c #(nop) ADD dir:76be3f5c1ca2db857c2fc0b0aa43b412f0a2271c737386c8b7739337ff352a14 in /deployments \"},{\"created\":\"2020-07-16T17:11:58.51076243Z\",\"created_by\":\"/bin/sh -c #(nop) USER 1000\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:11:58.804831111Z\",\"created_by\":\"/bin/sh -c #(nop) ENV \\\"OPENSHIFT_BUILD_NAME\\\"=\\\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\\\" \\\"OPENSHIFT_BUILD_NAMESPACE\\\"=\\\"tommy\\\"\",\"empty_layer\":true},{\"created\":\"2020-07-16T17:11:58.8503827Z\",\"created_by\":\"/bin/sh -c #(nop) LABEL \\\"io.openshift.build.name\\\"=\\\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\\\" \\\"io.openshift.build.namespace\\\"=\\\"tommy\\\"\",\"empty_layer\":true}]}",
+    "Manifest": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":8506,\"digest\":\"sha256:16f27f0941a14668039aafb4b2366c13e2c55ea917f1589864291f8ed7ebef58\"},\"layers\":[{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":54458775,\"digest\":\"sha256:396754cf27f9e418ecbecce2f78b337f7bae4b1cd33a7d1c8926c54898cadf2f\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":1656,\"digest\":\"sha256:41e1474940d5ff346fa62b08d2edcf116482c0b9fdf549dd4ce3a9cfcf0d3fa2\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":131563508,\"digest\":\"sha256:f0c78f1d366751f836cc1e315aa09f06d6f4b7ebf0d7a109136a898f9d4e22b0\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar.gzip\",\"size\":16175888,\"digest\":\"sha256:d70bb7a56bcae10665011258657c5905a12827ebfb193577bf1ad7701a1861d2\"}]}",
+    "Container": "",
+    "ContainerID": "",
+    "MountPoint": "",
+    "ProcessLabel": "",
+    "MountLabel": "",
+    "ImageAnnotations": {},
+    "ImageCreatedBy": "",
+    "OCIv1": {
+        "created": "2020-07-16T17:11:58.8503827Z",
+        "architecture": "amd64",
+        "os": "linux",
+        "config": {
+            "User": "1000",
+            "ExposedPorts": {
+                "8080/tcp": {},
+                "8443/tcp": {},
+                "8778/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JAVA_HOME=/usr/lib/jvm/java-11",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=11",
+                "JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk",
+                "AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml",
+                "JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "AB_JOLOKIA_HTTPS=true",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia",
+                "JOLOKIA_VERSION=1.6.2",
+                "JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/",
+                "MAVEN_VERSION=3.6",
+                "S2I_SOURCE_DEPLOYMENTS_FILTER=*.jar",
+                "JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/",
+                "JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy",
+                "JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm",
+                "JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/",
+                "JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/",
+                "JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JBOSS_CONTAINER_JAVA_RUN_MODULE=/opt/jboss/container/java/run",
+                "JBOSS_CONTAINER_JAVA_S2I_MODULE=/opt/jboss/container/java/s2i",
+                "JBOSS_IMAGE_NAME=ubi8/openjdk-11",
+                "JBOSS_IMAGE_VERSION=1.3",
+                "OPENSHIFT_BUILD_NAME=camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "OPENSHIFT_BUILD_NAMESPACE=tommy"
+            ],
+            "Cmd": [
+                "/usr/local/s2i/run"
+            ],
+            "WorkingDir": "/home/jboss",
+            "Labels": {
+                "architecture": "x86_64",
+                "build-date": "2020-06-25T19:48:23.713669",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "openjdk-11-ubi8-container",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+                "description": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "distribution-scope": "public",
+                "io.cekit.version": "3.6.0",
+                "io.fabric8.s2i.version.jolokia": "1.6.2-redhat-00002",
+                "io.fabric8.s2i.version.maven": "3.6",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.name": "camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "io.openshift.build.namespace": "tommy",
+                "io.openshift.expose-services": "",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "maintainer": "Red Hat OpenJDK <openjdk@redhat.com>",
+                "name": "ubi8/openjdk-11",
+                "org.jboss.container.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "11",
+                "org.jboss.product.version": "11",
+                "release": "3.1593114401",
+                "summary": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/openjdk-11/images/1.3-3.1593114401",
+                "usage": "https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/",
+                "vcs-ref": "266b4ce1d8eb6120db116ac30fb9d3cfcbbe1cc0",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.3"
+            }
+        },
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:f9ddbcc4e7954a705b700c35c5e5beceabd86af121a6e561d86437a8512a6be6",
+                "sha256:90c2e42f948b524cf98005073e0b0aa2065160abf9e8b314976c064e270d92ac",
+                "sha256:b63f259a5e01e24733ed2be18966636b66d55107e79415aa7f802830a51a603f",
+                "sha256:f4115da7dc1f028226691a809fdd267b9ef200547134c2b65687cf3af0ee614d"
+            ]
+        },
+        "history": [
+            {
+                "created": "2020-06-25T19:42:26.481544695Z",
+                "comment": "Imported from -"
+            },
+            {
+                "created": "2020-06-25T19:42:34.833547Z"
+            },
+            {
+                "created": "2020-06-25T19:57:14.22292Z"
+            },
+            {
+                "created": "2020-07-16T17:11:56.403498279Z",
+                "created_by": "/bin/sh -c #(nop) ADD dir:76be3f5c1ca2db857c2fc0b0aa43b412f0a2271c737386c8b7739337ff352a14 in /deployments "
+            },
+            {
+                "created": "2020-07-16T17:11:58.51076243Z",
+                "created_by": "/bin/sh -c #(nop) USER 1000",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:11:58.804831111Z",
+                "created_by": "/bin/sh -c #(nop) ENV \"OPENSHIFT_BUILD_NAME\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"OPENSHIFT_BUILD_NAMESPACE\"=\"tommy\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:11:58.8503827Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.name\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"io.openshift.build.namespace\"=\"tommy\"",
+                "empty_layer": true
+            }
+        ]
+    },
+    "Docker": {
+        "created": "2020-07-16T17:11:58.8503827Z",
+        "container": "6fe352251df5bcd9e22716e07584c41550bf8f7688cb83f42f0847b7b51552a1",
+        "container_config": {
+            "Hostname": "4bf2f21922e8",
+            "Domainname": "",
+            "User": "1000",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8080/tcp": {},
+                "8443/tcp": {},
+                "8778/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JAVA_HOME=/usr/lib/jvm/java-11",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=11",
+                "JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk",
+                "AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml",
+                "JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "AB_JOLOKIA_HTTPS=true",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia",
+                "JOLOKIA_VERSION=1.6.2",
+                "JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/",
+                "MAVEN_VERSION=3.6",
+                "S2I_SOURCE_DEPLOYMENTS_FILTER=*.jar",
+                "JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/",
+                "JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy",
+                "JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm",
+                "JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/",
+                "JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/",
+                "JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JBOSS_CONTAINER_JAVA_RUN_MODULE=/opt/jboss/container/java/run",
+                "JBOSS_CONTAINER_JAVA_S2I_MODULE=/opt/jboss/container/java/s2i",
+                "JBOSS_IMAGE_NAME=ubi8/openjdk-11",
+                "JBOSS_IMAGE_VERSION=1.3",
+                "OPENSHIFT_BUILD_NAME=camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "OPENSHIFT_BUILD_NAMESPACE=tommy"
+            ],
+            "Cmd": [
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "ff1e1c6cd27c4148a505664744d085ccbe4d509441c7fe45c5ce5c89e4fbb79d",
+            "Volumes": {},
+            "WorkingDir": "/home/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "architecture": "x86_64",
+                "build-date": "2020-06-25T19:48:23.713669",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "openjdk-11-ubi8-container",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+                "description": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "distribution-scope": "public",
+                "io.cekit.version": "3.6.0",
+                "io.fabric8.s2i.version.jolokia": "1.6.2-redhat-00002",
+                "io.fabric8.s2i.version.maven": "3.6",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.name": "camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "io.openshift.build.namespace": "tommy",
+                "io.openshift.expose-services": "",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "maintainer": "Red Hat OpenJDK <openjdk@redhat.com>",
+                "name": "ubi8/openjdk-11",
+                "org.jboss.container.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "11",
+                "org.jboss.product.version": "11",
+                "release": "3.1593114401",
+                "summary": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/openjdk-11/images/1.3-3.1593114401",
+                "usage": "https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/",
+                "vcs-ref": "266b4ce1d8eb6120db116ac30fb9d3cfcbbe1cc0",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.3"
+            }
+        },
+        "config": {
+            "Hostname": "4bf2f21922e8",
+            "Domainname": "",
+            "User": "1000",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8080/tcp": {},
+                "8443/tcp": {},
+                "8778/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JAVA_HOME=/usr/lib/jvm/java-11",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=11",
+                "JBOSS_CONTAINER_OPENJDK_JDK_MODULE=/opt/jboss/container/openjdk/jdk",
+                "AB_PROMETHEUS_JMX_EXPORTER_CONFIG=/opt/jboss/container/prometheus/etc/jmx-exporter-config.yaml",
+                "JBOSS_CONTAINER_PROMETHEUS_MODULE=/opt/jboss/container/prometheus",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "AB_JOLOKIA_HTTPS=true",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "JBOSS_CONTAINER_JOLOKIA_MODULE=/opt/jboss/container/jolokia",
+                "JOLOKIA_VERSION=1.6.2",
+                "JBOSS_CONTAINER_MAVEN_36_MODULE=/opt/jboss/container/maven/36/",
+                "MAVEN_VERSION=3.6",
+                "S2I_SOURCE_DEPLOYMENTS_FILTER=*.jar",
+                "JBOSS_CONTAINER_S2I_CORE_MODULE=/opt/jboss/container/s2i/core/",
+                "JBOSS_CONTAINER_JAVA_PROXY_MODULE=/opt/jboss/container/java/proxy",
+                "JBOSS_CONTAINER_JAVA_JVM_MODULE=/opt/jboss/container/java/jvm",
+                "JBOSS_CONTAINER_UTIL_LOGGING_MODULE=/opt/jboss/container/util/logging/",
+                "JBOSS_CONTAINER_MAVEN_DEFAULT_MODULE=/opt/jboss/container/maven/default/",
+                "JBOSS_CONTAINER_MAVEN_S2I_MODULE=/opt/jboss/container/maven/s2i",
+                "JAVA_DATA_DIR=/deployments/data",
+                "JBOSS_CONTAINER_JAVA_RUN_MODULE=/opt/jboss/container/java/run",
+                "JBOSS_CONTAINER_JAVA_S2I_MODULE=/opt/jboss/container/java/s2i",
+                "JBOSS_IMAGE_NAME=ubi8/openjdk-11",
+                "JBOSS_IMAGE_VERSION=1.3",
+                "OPENSHIFT_BUILD_NAME=camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "OPENSHIFT_BUILD_NAMESPACE=tommy"
+            ],
+            "Cmd": [
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "ff1e1c6cd27c4148a505664744d085ccbe4d509441c7fe45c5ce5c89e4fbb79d",
+            "Volumes": {},
+            "WorkingDir": "/home/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "architecture": "x86_64",
+                "build-date": "2020-06-25T19:48:23.713669",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "openjdk-11-ubi8-container",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI",
+                "description": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "distribution-scope": "public",
+                "io.cekit.version": "3.6.0",
+                "io.fabric8.s2i.version.jolokia": "1.6.2-redhat-00002",
+                "io.fabric8.s2i.version.maven": "3.6",
+                "io.k8s.description": "Platform for building and running plain Java applications (fat-jar and flat classpath)",
+                "io.k8s.display-name": "Java Applications",
+                "io.openshift.build.name": "camel-k-kit-bs88jp4c6o1f895s3fn0-1",
+                "io.openshift.build.namespace": "tommy",
+                "io.openshift.expose-services": "",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java",
+                "maintainer": "Red Hat OpenJDK <openjdk@redhat.com>",
+                "name": "ubi8/openjdk-11",
+                "org.jboss.container.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "11",
+                "org.jboss.product.version": "11",
+                "release": "3.1593114401",
+                "summary": "Source To Image (S2I) image for Red Hat OpenShift providing OpenJDK 11",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/openjdk-11/images/1.3-3.1593114401",
+                "usage": "https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/",
+                "vcs-ref": "266b4ce1d8eb6120db116ac30fb9d3cfcbbe1cc0",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.3"
+            }
+        },
+        "architecture": "amd64",
+        "os": "linux",
+        "parent": "sha256:68ab2bb9fe6a99c3be293e3de6fcd62957982c979e4c121d0f4089cfff57e159",
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:f9ddbcc4e7954a705b700c35c5e5beceabd86af121a6e561d86437a8512a6be6",
+                "sha256:90c2e42f948b524cf98005073e0b0aa2065160abf9e8b314976c064e270d92ac",
+                "sha256:b63f259a5e01e24733ed2be18966636b66d55107e79415aa7f802830a51a603f",
+                "sha256:f4115da7dc1f028226691a809fdd267b9ef200547134c2b65687cf3af0ee614d"
+            ]
+        },
+        "history": [
+            {
+                "created": "2020-06-25T19:42:26.481544695Z",
+                "comment": "Imported from -"
+            },
+            {
+                "created": "2020-06-25T19:42:34.833547Z"
+            },
+            {
+                "created": "2020-06-25T19:57:14.22292Z"
+            },
+            {
+                "created": "2020-07-16T17:11:56.403498279Z",
+                "created_by": "/bin/sh -c #(nop) ADD dir:76be3f5c1ca2db857c2fc0b0aa43b412f0a2271c737386c8b7739337ff352a14 in /deployments "
+            },
+            {
+                "created": "2020-07-16T17:11:58.51076243Z",
+                "created_by": "/bin/sh -c #(nop) USER 1000",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:11:58.804831111Z",
+                "created_by": "/bin/sh -c #(nop) ENV \"OPENSHIFT_BUILD_NAME\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"OPENSHIFT_BUILD_NAMESPACE\"=\"tommy\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T17:11:58.8503827Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.name\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"io.openshift.build.namespace\"=\"tommy\"",
+                "empty_layer": true
+            }
+        ]
+    },
+    "DefaultMountsFilePath": "",
+    "Isolation": "IsolationDefault",
+    "NamespaceOptions": [
+        {
+            "Name": "cgroup",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "ipc",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "mount",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "network",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "pid",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "user",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "uts",
+            "Host": false,
+            "Path": ""
+        }
+    ],
+    "Capabilities": null,
+    "ConfigureNetwork": "NetworkDefault",
+    "CNIPluginPath": "",
+    "CNIConfigDir": "",
+    "IDMappingOptions": {
+        "HostUIDMapping": true,
+        "HostGIDMapping": true,
+        "UIDMap": [],
+        "GIDMap": []
+    },
+    "History": [
+        {
+            "created": "2020-06-25T19:42:26.481544695Z",
+            "comment": "Imported from -"
+        },
+        {
+            "created": "2020-06-25T19:42:34.833547Z"
+        },
+        {
+            "created": "2020-06-25T19:57:14.22292Z"
+        },
+        {
+            "created": "2020-07-16T17:11:56.403498279Z",
+            "created_by": "/bin/sh -c #(nop) ADD dir:76be3f5c1ca2db857c2fc0b0aa43b412f0a2271c737386c8b7739337ff352a14 in /deployments "
+        },
+        {
+            "created": "2020-07-16T17:11:58.51076243Z",
+            "created_by": "/bin/sh -c #(nop) USER 1000",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:11:58.804831111Z",
+            "created_by": "/bin/sh -c #(nop) ENV \"OPENSHIFT_BUILD_NAME\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"OPENSHIFT_BUILD_NAMESPACE\"=\"tommy\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:11:58.8503827Z",
+            "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.name\"=\"camel-k-kit-bs88jp4c6o1f895s3fn0-1\" \"io.openshift.build.namespace\"=\"tommy\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T17:13:46.574026702Z"
+        }
+    ],
+    "Devices": null
+}

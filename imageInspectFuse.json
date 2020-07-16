@@ -1,0 +1,527 @@
+{
+    "Type": "buildah 0.0.1",
+    "FromImage": "image-registry.openshift-image-registry.svc:5000/ahameed-fuse/camel-ose-springboot-xml@sha256:6b421ceb5a11578d646443501cfcaf81bbe9792fc4d695b2240229272f368f97",
+    "FromImageID": "ee008ab5fc8985ab9d992f64678eb2820b26a984187aa888f4dd8a6ef9d2aaef",
+    "FromImageDigest": "sha256:6b421ceb5a11578d646443501cfcaf81bbe9792fc4d695b2240229272f368f97",
+    "Config": "{\"created\":\"2020-07-16T18:30:03.632479129Z\",\"container\":\"95b857e9c2bbcba9a172aa016226068961c987af064ef30d1696447ee7790404\",\"container_config\":{\"Hostname\":\"8ea581222c6a\",\"Domainname\":\"\",\"User\":\"185\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8778/tcp\":{},\"9779/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/opt/rh/rh-maven35/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"container=oci\",\"HOME=/home/jboss\",\"JBOSS_IMAGE_NAME=jboss/openjdk18-rhel7\",\"JBOSS_IMAGE_VERSION=1.1\",\"JAVA_HOME=/usr/lib/jvm/java-1.8.0\",\"JAVA_VENDOR=openjdk\",\"JAVA_VERSION=1.8.0\",\"FUSE_JAVA_IMAGE_NAME=fuse7/fuse-java-openshift\",\"FUSE_JAVA_IMAGE_VERSION=1.4\",\"JOLOKIA_VERSION=1.5.0.redhat-1\",\"PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1.redhat-00006\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"JAVA_DATA_DIR=/deployments/data\",\"MANPATH=/opt/rh/rh-maven35/root/usr/share/man:\",\"PYTHONPATH=/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages\",\"JAVACONFDIRS=/opt/rh/rh-maven35/root/etc/java\",\"XDG_CONFIG_DIRS=/opt/rh/rh-maven35/root/etc/xdg:/etc/xdg\",\"XDG_DATA_DIRS=/opt/rh/rh-maven35/root/usr/share:/usr/local/share:/usr/share\",\"JAVA_APP_DIR=/deployments\",\"OPENSHIFT_BUILD_NAME=camel-ose-springboot-xml-s2i-1\",\"OPENSHIFT_BUILD_NAMESPACE=ahameed-fuse\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"a18474b8598a16e4515539f2ad4d40406409de5a319c983d2a9ee84509bdef23\",\"Volumes\":{},\"WorkingDir\":\"/home/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"architecture\":\"x86_64\",\"authoritative-source-url\":\"registry.access.redhat.com\",\"build-date\":\"2019-09-04T11:27:17.557941\",\"com.redhat.build-host\":\"cpt-1008.osbs.prod.upshift.rdu2.redhat.com\",\"com.redhat.component\":\"fuse-java-openshift-container\",\"com.redhat.deployments-dir\":\"/deployments\",\"com.redhat.dev-mode\":\"JAVA_DEBUG:false\",\"com.redhat.dev-mode.port\":\"JAVA_DEBUG_PORT:5005\",\"com.redhat.license_terms\":\"https://www.redhat.com/en/about/red-hat-end-user-license-agreements\",\"description\":\"Build and run Spring Boot-based integration applications\",\"distribution-scope\":\"public\",\"io.cekit.version\":\"2.2.1\",\"io.fabric8.s2i.version.jolokia\":\"1.5.0.redhat-1\",\"io.fabric8.s2i.version.maven\":\"3.3.3-1.el7\",\"io.fabric8.s2i.version.prometheus.jmx_exporter\":\"0.3.1.redhat-00006\",\"io.k8s.description\":\"Build and run Spring Boot-based integration applications\",\"io.k8s.display-name\":\"Fuse for OpenShift\",\"io.openshift.build.image\":\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\",\"io.openshift.build.source-location\":\"/tmp/build/inputs\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java,fuse\",\"maintainer\":\"Otavio Piske \\u003copiske@redhat.com\\u003e\",\"name\":\"fuse7/fuse-java-openshift\",\"org.concrt.version\":\"2.2.1\",\"org.jboss.deployments-dir\":\"/deployments\",\"org.jboss.product\":\"openjdk\",\"org.jboss.product.openjdk.version\":\"1.8.0\",\"org.jboss.product.version\":\"1.8.0\",\"release\":\"14.1567588136\",\"summary\":\"Build and run Spring Boot-based integration applications\",\"url\":\"https://access.redhat.com/containers/#/registry.access.redhat.com/fuse7/fuse-java-openshift/images/1.4-14.1567588136\",\"vcs-ref\":\"ea10f76c372c8fc587f741263211a3612179c660\",\"vcs-type\":\"git\",\"vendor\":\"Red Hat, Inc.\",\"version\":\"1.4\"}},\"config\":{\"Hostname\":\"8ea581222c6a\",\"Domainname\":\"\",\"User\":\"185\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"ExposedPorts\":{\"8778/tcp\":{},\"9779/tcp\":{}},\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/opt/rh/rh-maven35/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i\",\"container=oci\",\"HOME=/home/jboss\",\"JBOSS_IMAGE_NAME=jboss/openjdk18-rhel7\",\"JBOSS_IMAGE_VERSION=1.1\",\"JAVA_HOME=/usr/lib/jvm/java-1.8.0\",\"JAVA_VENDOR=openjdk\",\"JAVA_VERSION=1.8.0\",\"FUSE_JAVA_IMAGE_NAME=fuse7/fuse-java-openshift\",\"FUSE_JAVA_IMAGE_VERSION=1.4\",\"JOLOKIA_VERSION=1.5.0.redhat-1\",\"PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1.redhat-00006\",\"AB_JOLOKIA_PASSWORD_RANDOM=true\",\"AB_JOLOKIA_AUTH_OPENSHIFT=true\",\"JAVA_DATA_DIR=/deployments/data\",\"MANPATH=/opt/rh/rh-maven35/root/usr/share/man:\",\"PYTHONPATH=/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages\",\"JAVACONFDIRS=/opt/rh/rh-maven35/root/etc/java\",\"XDG_CONFIG_DIRS=/opt/rh/rh-maven35/root/etc/xdg:/etc/xdg\",\"XDG_DATA_DIRS=/opt/rh/rh-maven35/root/usr/share:/usr/local/share:/usr/share\",\"JAVA_APP_DIR=/deployments\",\"OPENSHIFT_BUILD_NAME=camel-ose-springboot-xml-s2i-1\",\"OPENSHIFT_BUILD_NAMESPACE=ahameed-fuse\"],\"Cmd\":[\"/bin/sh\",\"-c\",\"/usr/local/s2i/run\"],\"ArgsEscaped\":true,\"Image\":\"a18474b8598a16e4515539f2ad4d40406409de5a319c983d2a9ee84509bdef23\",\"Volumes\":{},\"WorkingDir\":\"/home/jboss\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"architecture\":\"x86_64\",\"authoritative-source-url\":\"registry.access.redhat.com\",\"build-date\":\"2019-09-04T11:27:17.557941\",\"com.redhat.build-host\":\"cpt-1008.osbs.prod.upshift.rdu2.redhat.com\",\"com.redhat.component\":\"fuse-java-openshift-container\",\"com.redhat.deployments-dir\":\"/deployments\",\"com.redhat.dev-mode\":\"JAVA_DEBUG:false\",\"com.redhat.dev-mode.port\":\"JAVA_DEBUG_PORT:5005\",\"com.redhat.license_terms\":\"https://www.redhat.com/en/about/red-hat-end-user-license-agreements\",\"description\":\"Build and run Spring Boot-based integration applications\",\"distribution-scope\":\"public\",\"io.cekit.version\":\"2.2.1\",\"io.fabric8.s2i.version.jolokia\":\"1.5.0.redhat-1\",\"io.fabric8.s2i.version.maven\":\"3.3.3-1.el7\",\"io.fabric8.s2i.version.prometheus.jmx_exporter\":\"0.3.1.redhat-00006\",\"io.k8s.description\":\"Build and run Spring Boot-based integration applications\",\"io.k8s.display-name\":\"Fuse for OpenShift\",\"io.openshift.build.image\":\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\",\"io.openshift.build.source-location\":\"/tmp/build/inputs\",\"io.openshift.s2i.destination\":\"/tmp\",\"io.openshift.s2i.scripts-url\":\"image:///usr/local/s2i\",\"io.openshift.tags\":\"builder,java,fuse\",\"maintainer\":\"Otavio Piske \\u003copiske@redhat.com\\u003e\",\"name\":\"fuse7/fuse-java-openshift\",\"org.concrt.version\":\"2.2.1\",\"org.jboss.deployments-dir\":\"/deployments\",\"org.jboss.product\":\"openjdk\",\"org.jboss.product.openjdk.version\":\"1.8.0\",\"org.jboss.product.version\":\"1.8.0\",\"release\":\"14.1567588136\",\"summary\":\"Build and run Spring Boot-based integration applications\",\"url\":\"https://access.redhat.com/containers/#/registry.access.redhat.com/fuse7/fuse-java-openshift/images/1.4-14.1567588136\",\"vcs-ref\":\"ea10f76c372c8fc587f741263211a3612179c660\",\"vcs-type\":\"git\",\"vendor\":\"Red Hat, Inc.\",\"version\":\"1.4\"}},\"parent\":\"sha256:ad4d6e5244e83de4ddfb147e5bf12e47ad08f7a4a77e878141eafed93b3b4b32\",\"rootfs\":{\"type\":\"layers\",\"diff_ids\":[\"sha256:7481e934c3b75601ca0c29095f3bc3e8a3c816cff1237fe979e78ae203beef57\",\"sha256:5e7330baa8a3b03f66efbb8806c114f33d716f48ceb3bd4933460a2227461d36\",\"sha256:8057f17db18844c07488ce402997b761bcb3ba59493fdbb22ce4ef597a06329c\",\"sha256:6a5c09356a7825aa5d378ae6942a6acb38e32c44f127c56ef55a1c187efa6016\",\"sha256:54464e6177c5d24051789cfc6a720476e5444a67a561925dc5a7e56e3906706f\",\"sha256:30425e2493782b65d35d77d9165e5a31e67c58765631a0fa732d2685bab046d4\"]},\"history\":[{\"created\":\"2019-06-28T14:37:38.867462674Z\",\"comment\":\"Imported from -\"},{\"created\":\"2019-06-28T14:37:43.294623Z\"},{\"created\":\"2019-06-28T15:39:22.20197Z\"},{\"created\":\"2019-09-04T09:45:05.527688Z\"},{\"created\":\"2019-09-04T11:29:40.228289Z\"},{\"created\":\"2020-07-16T18:29:59.690037534Z\",\"created_by\":\"/bin/sh -c #(nop) LABEL \\\"io.openshift.build.image\\\"=\\\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\\\"       \\\"io.openshift.build.source-location\\\"=\\\"/tmp/build/inputs\\\"\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:29:59.690134421Z\",\"created_by\":\"/bin/sh -c #(nop) ENV JAVA_APP_DIR=\\\"/deployments\\\"     OPENSHIFT_BUILD_NAME=\\\"camel-ose-springboot-xml-s2i-1\\\"     OPENSHIFT_BUILD_NAMESPACE=\\\"ahameed-fuse\\\"\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:29:59.690176999Z\",\"created_by\":\"/bin/sh -c #(nop) USER root\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:30:01.439732426Z\",\"created_by\":\"/bin/sh -c #(nop) COPY dir:8a91f115437e2691a76d245a456c4253f547db87ba442dd33eeca716f31199e0 in /tmp/src \",\"empty_layer\":true},{\"created\":\"2020-07-16T18:30:02.531059077Z\",\"created_by\":\"/bin/sh -c chown -R 185:0 /tmp/src\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:30:02.531150376Z\",\"created_by\":\"/bin/sh -c #(nop) USER 185\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:30:03.63173721Z\",\"created_by\":\"/bin/sh -c /usr/local/s2i/assemble\",\"empty_layer\":true},{\"created\":\"2020-07-16T18:30:03.632479129Z\",\"created_by\":\"/bin/sh -c #(nop) CMD /usr/local/s2i/run\"}]}",
+    "Manifest": "{\"schemaVersion\":2,\"mediaType\":\"application/vnd.docker.distribution.manifest.v2+json\",\"config\":{\"mediaType\":\"application/vnd.docker.container.image.v1+json\",\"size\":8888,\"digest\":\"sha256:ee008ab5fc8985ab9d992f64678eb2820b26a984187aa888f4dd8a6ef9d2aaef\"},\"layers\":[{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":75837780,\"digest\":\"sha256:c43687042a41aad69fc526985ef2b82012c011db7e0e26faba4fc860ad32d88e\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":1331,\"digest\":\"sha256:2b7b014ba1b80abb29391141385bd32668571313647317d1d64d8b5cebb1f228\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":3910026,\"digest\":\"sha256:2825299765472d0b62c1ed19ebb564a8a191b88ce49639471a274d03e7f9151e\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":85123374,\"digest\":\"sha256:8df146e29e789eb3e8bec37172cca00cda60cf40f6924dda00379b283e2ce6db\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar\",\"size\":22761222,\"digest\":\"sha256:ace684c254cd984313cffa37b07e1ef036d8620ecf0c845567b758ffb58214db\"},{\"mediaType\":\"application/vnd.docker.image.rootfs.diff.tar.gzip\",\"size\":40344875,\"digest\":\"sha256:302a3df3560a1943457ff5189a6d37eeac15ffadb7285db11dbb7fde98897a00\"}]}",
+    "Container": "",
+    "ContainerID": "",
+    "MountPoint": "",
+    "ProcessLabel": "",
+    "MountLabel": "",
+    "ImageAnnotations": {},
+    "ImageCreatedBy": "",
+    "OCIv1": {
+        "created": "2020-07-16T18:30:03.632479129Z",
+        "architecture": "amd64",
+        "os": "linux",
+        "config": {
+            "User": "185",
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Env": [
+                "PATH=/opt/rh/rh-maven35/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JBOSS_IMAGE_NAME=jboss/openjdk18-rhel7",
+                "JBOSS_IMAGE_VERSION=1.1",
+                "JAVA_HOME=/usr/lib/jvm/java-1.8.0",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=1.8.0",
+                "FUSE_JAVA_IMAGE_NAME=fuse7/fuse-java-openshift",
+                "FUSE_JAVA_IMAGE_VERSION=1.4",
+                "JOLOKIA_VERSION=1.5.0.redhat-1",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1.redhat-00006",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "MANPATH=/opt/rh/rh-maven35/root/usr/share/man:",
+                "PYTHONPATH=/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages",
+                "JAVACONFDIRS=/opt/rh/rh-maven35/root/etc/java",
+                "XDG_CONFIG_DIRS=/opt/rh/rh-maven35/root/etc/xdg:/etc/xdg",
+                "XDG_DATA_DIRS=/opt/rh/rh-maven35/root/usr/share:/usr/local/share:/usr/share",
+                "JAVA_APP_DIR=/deployments",
+                "OPENSHIFT_BUILD_NAME=camel-ose-springboot-xml-s2i-1",
+                "OPENSHIFT_BUILD_NAMESPACE=ahameed-fuse"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "WorkingDir": "/home/jboss",
+            "Labels": {
+                "architecture": "x86_64",
+                "authoritative-source-url": "registry.access.redhat.com",
+                "build-date": "2019-09-04T11:27:17.557941",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "fuse-java-openshift-container",
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements",
+                "description": "Build and run Spring Boot-based integration applications",
+                "distribution-scope": "public",
+                "io.cekit.version": "2.2.1",
+                "io.fabric8.s2i.version.jolokia": "1.5.0.redhat-1",
+                "io.fabric8.s2i.version.maven": "3.3.3-1.el7",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1.redhat-00006",
+                "io.k8s.description": "Build and run Spring Boot-based integration applications",
+                "io.k8s.display-name": "Fuse for OpenShift",
+                "io.openshift.build.image": "image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java,fuse",
+                "maintainer": "Otavio Piske <opiske@redhat.com>",
+                "name": "fuse7/fuse-java-openshift",
+                "org.concrt.version": "2.2.1",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "1.8.0",
+                "org.jboss.product.version": "1.8.0",
+                "release": "14.1567588136",
+                "summary": "Build and run Spring Boot-based integration applications",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/fuse7/fuse-java-openshift/images/1.4-14.1567588136",
+                "vcs-ref": "ea10f76c372c8fc587f741263211a3612179c660",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.4"
+            }
+        },
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:7481e934c3b75601ca0c29095f3bc3e8a3c816cff1237fe979e78ae203beef57",
+                "sha256:5e7330baa8a3b03f66efbb8806c114f33d716f48ceb3bd4933460a2227461d36",
+                "sha256:8057f17db18844c07488ce402997b761bcb3ba59493fdbb22ce4ef597a06329c",
+                "sha256:6a5c09356a7825aa5d378ae6942a6acb38e32c44f127c56ef55a1c187efa6016",
+                "sha256:54464e6177c5d24051789cfc6a720476e5444a67a561925dc5a7e56e3906706f",
+                "sha256:30425e2493782b65d35d77d9165e5a31e67c58765631a0fa732d2685bab046d4"
+            ]
+        },
+        "history": [
+            {
+                "created": "2019-06-28T14:37:38.867462674Z",
+                "comment": "Imported from -"
+            },
+            {
+                "created": "2019-06-28T14:37:43.294623Z"
+            },
+            {
+                "created": "2019-06-28T15:39:22.20197Z"
+            },
+            {
+                "created": "2019-09-04T09:45:05.527688Z"
+            },
+            {
+                "created": "2019-09-04T11:29:40.228289Z"
+            },
+            {
+                "created": "2020-07-16T18:29:59.690037534Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:29:59.690134421Z",
+                "created_by": "/bin/sh -c #(nop) ENV JAVA_APP_DIR=\"/deployments\"     OPENSHIFT_BUILD_NAME=\"camel-ose-springboot-xml-s2i-1\"     OPENSHIFT_BUILD_NAMESPACE=\"ahameed-fuse\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:29:59.690176999Z",
+                "created_by": "/bin/sh -c #(nop) USER root",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:01.439732426Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:8a91f115437e2691a76d245a456c4253f547db87ba442dd33eeca716f31199e0 in /tmp/src ",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:02.531059077Z",
+                "created_by": "/bin/sh -c chown -R 185:0 /tmp/src",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:02.531150376Z",
+                "created_by": "/bin/sh -c #(nop) USER 185",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:03.63173721Z",
+                "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:03.632479129Z",
+                "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+            }
+        ]
+    },
+    "Docker": {
+        "created": "2020-07-16T18:30:03.632479129Z",
+        "container": "95b857e9c2bbcba9a172aa016226068961c987af064ef30d1696447ee7790404",
+        "container_config": {
+            "Hostname": "8ea581222c6a",
+            "Domainname": "",
+            "User": "185",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/opt/rh/rh-maven35/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JBOSS_IMAGE_NAME=jboss/openjdk18-rhel7",
+                "JBOSS_IMAGE_VERSION=1.1",
+                "JAVA_HOME=/usr/lib/jvm/java-1.8.0",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=1.8.0",
+                "FUSE_JAVA_IMAGE_NAME=fuse7/fuse-java-openshift",
+                "FUSE_JAVA_IMAGE_VERSION=1.4",
+                "JOLOKIA_VERSION=1.5.0.redhat-1",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1.redhat-00006",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "MANPATH=/opt/rh/rh-maven35/root/usr/share/man:",
+                "PYTHONPATH=/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages",
+                "JAVACONFDIRS=/opt/rh/rh-maven35/root/etc/java",
+                "XDG_CONFIG_DIRS=/opt/rh/rh-maven35/root/etc/xdg:/etc/xdg",
+                "XDG_DATA_DIRS=/opt/rh/rh-maven35/root/usr/share:/usr/local/share:/usr/share",
+                "JAVA_APP_DIR=/deployments",
+                "OPENSHIFT_BUILD_NAME=camel-ose-springboot-xml-s2i-1",
+                "OPENSHIFT_BUILD_NAMESPACE=ahameed-fuse"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "a18474b8598a16e4515539f2ad4d40406409de5a319c983d2a9ee84509bdef23",
+            "Volumes": {},
+            "WorkingDir": "/home/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "architecture": "x86_64",
+                "authoritative-source-url": "registry.access.redhat.com",
+                "build-date": "2019-09-04T11:27:17.557941",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "fuse-java-openshift-container",
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements",
+                "description": "Build and run Spring Boot-based integration applications",
+                "distribution-scope": "public",
+                "io.cekit.version": "2.2.1",
+                "io.fabric8.s2i.version.jolokia": "1.5.0.redhat-1",
+                "io.fabric8.s2i.version.maven": "3.3.3-1.el7",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1.redhat-00006",
+                "io.k8s.description": "Build and run Spring Boot-based integration applications",
+                "io.k8s.display-name": "Fuse for OpenShift",
+                "io.openshift.build.image": "image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java,fuse",
+                "maintainer": "Otavio Piske <opiske@redhat.com>",
+                "name": "fuse7/fuse-java-openshift",
+                "org.concrt.version": "2.2.1",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "1.8.0",
+                "org.jboss.product.version": "1.8.0",
+                "release": "14.1567588136",
+                "summary": "Build and run Spring Boot-based integration applications",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/fuse7/fuse-java-openshift/images/1.4-14.1567588136",
+                "vcs-ref": "ea10f76c372c8fc587f741263211a3612179c660",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.4"
+            }
+        },
+        "config": {
+            "Hostname": "8ea581222c6a",
+            "Domainname": "",
+            "User": "185",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8778/tcp": {},
+                "9779/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/opt/rh/rh-maven35/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/s2i",
+                "container=oci",
+                "HOME=/home/jboss",
+                "JBOSS_IMAGE_NAME=jboss/openjdk18-rhel7",
+                "JBOSS_IMAGE_VERSION=1.1",
+                "JAVA_HOME=/usr/lib/jvm/java-1.8.0",
+                "JAVA_VENDOR=openjdk",
+                "JAVA_VERSION=1.8.0",
+                "FUSE_JAVA_IMAGE_NAME=fuse7/fuse-java-openshift",
+                "FUSE_JAVA_IMAGE_VERSION=1.4",
+                "JOLOKIA_VERSION=1.5.0.redhat-1",
+                "PROMETHEUS_JMX_EXPORTER_VERSION=0.3.1.redhat-00006",
+                "AB_JOLOKIA_PASSWORD_RANDOM=true",
+                "AB_JOLOKIA_AUTH_OPENSHIFT=true",
+                "JAVA_DATA_DIR=/deployments/data",
+                "MANPATH=/opt/rh/rh-maven35/root/usr/share/man:",
+                "PYTHONPATH=/opt/rh/rh-maven35/root/usr/lib/python2.7/site-packages",
+                "JAVACONFDIRS=/opt/rh/rh-maven35/root/etc/java",
+                "XDG_CONFIG_DIRS=/opt/rh/rh-maven35/root/etc/xdg:/etc/xdg",
+                "XDG_DATA_DIRS=/opt/rh/rh-maven35/root/usr/share:/usr/local/share:/usr/share",
+                "JAVA_APP_DIR=/deployments",
+                "OPENSHIFT_BUILD_NAME=camel-ose-springboot-xml-s2i-1",
+                "OPENSHIFT_BUILD_NAMESPACE=ahameed-fuse"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "/usr/local/s2i/run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "a18474b8598a16e4515539f2ad4d40406409de5a319c983d2a9ee84509bdef23",
+            "Volumes": {},
+            "WorkingDir": "/home/jboss",
+            "Entrypoint": [],
+            "OnBuild": [],
+            "Labels": {
+                "architecture": "x86_64",
+                "authoritative-source-url": "registry.access.redhat.com",
+                "build-date": "2019-09-04T11:27:17.557941",
+                "com.redhat.build-host": "cpt-1008.osbs.prod.upshift.rdu2.redhat.com",
+                "com.redhat.component": "fuse-java-openshift-container",
+                "com.redhat.deployments-dir": "/deployments",
+                "com.redhat.dev-mode": "JAVA_DEBUG:false",
+                "com.redhat.dev-mode.port": "JAVA_DEBUG_PORT:5005",
+                "com.redhat.license_terms": "https://www.redhat.com/en/about/red-hat-end-user-license-agreements",
+                "description": "Build and run Spring Boot-based integration applications",
+                "distribution-scope": "public",
+                "io.cekit.version": "2.2.1",
+                "io.fabric8.s2i.version.jolokia": "1.5.0.redhat-1",
+                "io.fabric8.s2i.version.maven": "3.3.3-1.el7",
+                "io.fabric8.s2i.version.prometheus.jmx_exporter": "0.3.1.redhat-00006",
+                "io.k8s.description": "Build and run Spring Boot-based integration applications",
+                "io.k8s.display-name": "Fuse for OpenShift",
+                "io.openshift.build.image": "image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c",
+                "io.openshift.build.source-location": "/tmp/build/inputs",
+                "io.openshift.s2i.destination": "/tmp",
+                "io.openshift.s2i.scripts-url": "image:///usr/local/s2i",
+                "io.openshift.tags": "builder,java,fuse",
+                "maintainer": "Otavio Piske <opiske@redhat.com>",
+                "name": "fuse7/fuse-java-openshift",
+                "org.concrt.version": "2.2.1",
+                "org.jboss.deployments-dir": "/deployments",
+                "org.jboss.product": "openjdk",
+                "org.jboss.product.openjdk.version": "1.8.0",
+                "org.jboss.product.version": "1.8.0",
+                "release": "14.1567588136",
+                "summary": "Build and run Spring Boot-based integration applications",
+                "url": "https://access.redhat.com/containers/#/registry.access.redhat.com/fuse7/fuse-java-openshift/images/1.4-14.1567588136",
+                "vcs-ref": "ea10f76c372c8fc587f741263211a3612179c660",
+                "vcs-type": "git",
+                "vendor": "Red Hat, Inc.",
+                "version": "1.4"
+            }
+        },
+        "architecture": "amd64",
+        "os": "linux",
+        "parent": "sha256:ad4d6e5244e83de4ddfb147e5bf12e47ad08f7a4a77e878141eafed93b3b4b32",
+        "rootfs": {
+            "type": "layers",
+            "diff_ids": [
+                "sha256:7481e934c3b75601ca0c29095f3bc3e8a3c816cff1237fe979e78ae203beef57",
+                "sha256:5e7330baa8a3b03f66efbb8806c114f33d716f48ceb3bd4933460a2227461d36",
+                "sha256:8057f17db18844c07488ce402997b761bcb3ba59493fdbb22ce4ef597a06329c",
+                "sha256:6a5c09356a7825aa5d378ae6942a6acb38e32c44f127c56ef55a1c187efa6016",
+                "sha256:54464e6177c5d24051789cfc6a720476e5444a67a561925dc5a7e56e3906706f",
+                "sha256:30425e2493782b65d35d77d9165e5a31e67c58765631a0fa732d2685bab046d4"
+            ]
+        },
+        "history": [
+            {
+                "created": "2019-06-28T14:37:38.867462674Z",
+                "comment": "Imported from -"
+            },
+            {
+                "created": "2019-06-28T14:37:43.294623Z"
+            },
+            {
+                "created": "2019-06-28T15:39:22.20197Z"
+            },
+            {
+                "created": "2019-09-04T09:45:05.527688Z"
+            },
+            {
+                "created": "2019-09-04T11:29:40.228289Z"
+            },
+            {
+                "created": "2020-07-16T18:29:59.690037534Z",
+                "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:29:59.690134421Z",
+                "created_by": "/bin/sh -c #(nop) ENV JAVA_APP_DIR=\"/deployments\"     OPENSHIFT_BUILD_NAME=\"camel-ose-springboot-xml-s2i-1\"     OPENSHIFT_BUILD_NAMESPACE=\"ahameed-fuse\"",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:29:59.690176999Z",
+                "created_by": "/bin/sh -c #(nop) USER root",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:01.439732426Z",
+                "created_by": "/bin/sh -c #(nop) COPY dir:8a91f115437e2691a76d245a456c4253f547db87ba442dd33eeca716f31199e0 in /tmp/src ",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:02.531059077Z",
+                "created_by": "/bin/sh -c chown -R 185:0 /tmp/src",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:02.531150376Z",
+                "created_by": "/bin/sh -c #(nop) USER 185",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:03.63173721Z",
+                "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+                "empty_layer": true
+            },
+            {
+                "created": "2020-07-16T18:30:03.632479129Z",
+                "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+            }
+        ]
+    },
+    "DefaultMountsFilePath": "",
+    "Isolation": "IsolationDefault",
+    "NamespaceOptions": [
+        {
+            "Name": "cgroup",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "ipc",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "mount",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "network",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "pid",
+            "Host": false,
+            "Path": ""
+        },
+        {
+            "Name": "user",
+            "Host": true,
+            "Path": ""
+        },
+        {
+            "Name": "uts",
+            "Host": false,
+            "Path": ""
+        }
+    ],
+    "Capabilities": null,
+    "ConfigureNetwork": "NetworkDefault",
+    "CNIPluginPath": "",
+    "CNIConfigDir": "",
+    "IDMappingOptions": {
+        "HostUIDMapping": true,
+        "HostGIDMapping": true,
+        "UIDMap": [],
+        "GIDMap": []
+    },
+    "History": [
+        {
+            "created": "2019-06-28T14:37:38.867462674Z",
+            "comment": "Imported from -"
+        },
+        {
+            "created": "2019-06-28T14:37:43.294623Z"
+        },
+        {
+            "created": "2019-06-28T15:39:22.20197Z"
+        },
+        {
+            "created": "2019-09-04T09:45:05.527688Z"
+        },
+        {
+            "created": "2019-09-04T11:29:40.228289Z"
+        },
+        {
+            "created": "2020-07-16T18:29:59.690037534Z",
+            "created_by": "/bin/sh -c #(nop) LABEL \"io.openshift.build.image\"=\"image-registry.openshift-image-registry.svc:5000/openshift/fuse7-java-openshift@sha256:5555a6031cbb8eb09cfeb73cacaabefd5a5824637b047af69b981bc66bdd8b3c\"       \"io.openshift.build.source-location\"=\"/tmp/build/inputs\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:29:59.690134421Z",
+            "created_by": "/bin/sh -c #(nop) ENV JAVA_APP_DIR=\"/deployments\"     OPENSHIFT_BUILD_NAME=\"camel-ose-springboot-xml-s2i-1\"     OPENSHIFT_BUILD_NAMESPACE=\"ahameed-fuse\"",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:29:59.690176999Z",
+            "created_by": "/bin/sh -c #(nop) USER root",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:30:01.439732426Z",
+            "created_by": "/bin/sh -c #(nop) COPY dir:8a91f115437e2691a76d245a456c4253f547db87ba442dd33eeca716f31199e0 in /tmp/src ",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:30:02.531059077Z",
+            "created_by": "/bin/sh -c chown -R 185:0 /tmp/src",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:30:02.531150376Z",
+            "created_by": "/bin/sh -c #(nop) USER 185",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:30:03.63173721Z",
+            "created_by": "/bin/sh -c /usr/local/s2i/assemble",
+            "empty_layer": true
+        },
+        {
+            "created": "2020-07-16T18:30:03.632479129Z",
+            "created_by": "/bin/sh -c #(nop) CMD /usr/local/s2i/run"
+        },
+        {
+            "created": "2020-07-16T18:52:58.979856293Z"
+        }
+    ],
+    "Devices": null
+}

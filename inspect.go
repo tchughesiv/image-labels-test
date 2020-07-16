@@ -1,8 +1,6 @@
 package main
 
 import (
-	"strings"
-
 	"github.com/containers/buildah"
 	buildahcli "github.com/containers/buildah/pkg/cli"
 	"github.com/containers/buildah/pkg/parse"
@@ -63,6 +61,9 @@ func inspectCmd(c *cobra.Command, args []string, iopts inspectResults) error {
 	if err != nil {
 		return err
 	}
+	for _, opt := range store.GraphOptions() {
+		println(opt)
+	}
 
 	ctx := getContext()
 
@@ -81,15 +82,20 @@ func parseFindings(builder *buildah.Builder) {
 	ociConfig := builder.OCIv1.Config
 	if ociConfig.Labels != nil {
 		println("IMAGE LABELS:")
-		for key, val := range ociConfig.Labels {
-			if strings.Contains(key, "org.jboss.") {
-				println(key + "=" + val)
+		/*
+			for key, val := range ociConfig.Labels {
+				if strings.Contains(key, "org.jboss.") {
+					println(key + "=" + val)
+				}
 			}
-		}
-		for key, val := range ociConfig.Labels {
-			if strings.Contains(key, "com.redhat.") {
-				println(key + "=" + val)
+			for key, val := range ociConfig.Labels {
+				if strings.Contains(key, "com.redhat.") {
+					println(key + "=" + val)
+				}
 			}
+		*/
+		for key, val := range ociConfig.Labels {
+			println(key + " = " + val)
 		}
 	}
 	println()
