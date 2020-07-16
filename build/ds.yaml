@@ -46,9 +46,9 @@ spec:
         ##  name: run
         ##  readOnly: true
       dnsPolicy: ClusterFirst
-      #nodeSelector:
+      nodeSelector:
+        kubernetes.io/os: linux
         #kubernetes.io/hostname: worker-4.mw-ocp4.cloud.lab.eng.bos.redhat.com
-        #kubernetes.io/os: linux
       restartPolicy: Always
       serviceAccount: image-labels
       serviceAccountName: image-labels
