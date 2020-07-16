@@ -1,185 +1,162 @@
 package main
 
 import (
-	"context"
+	"encoding/json"
 	"fmt"
 	"os"
-	"strings"
-	"time"
+	"regexp"
+	"text/template"
 
 	"github.com/containers/buildah"
 	buildahcli "github.com/containers/buildah/pkg/cli"
 	"github.com/containers/buildah/pkg/parse"
-	"github.com/containers/storage"
+	"github.com/containers/storage/pkg/unshare"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
-type runInputOptions struct {
-	addHistory     bool
-	capAdd         []string
-	capDrop        []string
-	hostname       string
-	isolation      string
-	runtime        string
-	runtimeFlag    []string
-	noPivot        bool
-	securityOption []string
-	terminal       bool
-	volumes        []string
-	mounts         []string
-	*buildahcli.NameSpaceResults
+var (
+	globalFlagResults globalFlags
+)
+
+var rootCmd = &cobra.Command{
+	Use:  "buildah",
+	Long: "A tool that facilitates building OCI images",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		return before(cmd)
+	},
+	PersistentPostRunE: func(cmd *cobra.Command, args []string) error {
+		return after(cmd)
+	},
+	SilenceUsage:  true,
+	SilenceErrors: true,
 }
 
-func main() {
-	debug := true
-	logrus.SetLevel(logrus.ErrorLevel)
-	if debug {
-		logrus.SetLevel(logrus.DebugLevel)
-	}
-	if err := runCmd(&cobra.Command{}, os.Args[1:], runInputOptions{}); err != nil {
-		logrus.Error(err)
-	}
+const (
+	logLevel             = "log-level"
+	inspectTypeContainer = "container"
+	inspectTypeImage     = "image"
+)
+
+type inspectResults struct {
+	format      string
+	inspectType string
 }
 
-// buildah logic
-func runCmd(c *cobra.Command, args []string, iopts runInputOptions) error {
-	name := args[0]
-
-	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
-	if err != nil {
-		return err
-	}
-	store, err := storage.GetStore(storeOptions)
-	if err != nil {
-		return err
-	}
-	defer func() {
-		if _, err := store.Shutdown(false); err != nil {
-			logrus.Error(err)
-			os.Exit(1)
-		}
-	}()
-
-	builder, err := openBuilder(context.TODO(), store, name)
-	if err != nil {
-		return errors.Wrapf(err, "error reading build container %q", name)
-	}
-
-	isolation, err := parse.IsolationOption(c.Flag("isolation").Value.String())
-	if err != nil {
-		return err
-	}
-
-	runtimeFlags := []string{}
-	for _, arg := range iopts.runtimeFlag {
-		runtimeFlags = append(runtimeFlags, "--"+arg)
-	}
-
-	noPivot := iopts.noPivot || (os.Getenv("BUILDAH_NOPIVOT") != "")
-
-	namespaceOptions, networkPolicy, err := parse.NamespaceOptions(c)
-	if err != nil {
-		return errors.Wrapf(err, "error parsing namespace-related options")
-	}
-
-	options := buildah.RunOptions{
-		Hostname:         iopts.hostname,
-		Runtime:          iopts.runtime,
-		Args:             runtimeFlags,
-		NoPivot:          noPivot,
-		User:             "",
-		Isolation:        isolation,
-		NamespaceOptions: namespaceOptions,
-		ConfigureNetwork: networkPolicy,
-		CNIPluginPath:    iopts.CNIPlugInPath,
-		CNIConfigDir:     iopts.CNIConfigDir,
-		AddCapabilities:  iopts.capAdd,
-		DropCapabilities: iopts.capDrop,
-	}
-
-	mounts, err := parse.GetVolumes(iopts.volumes, iopts.mounts)
-	if err != nil {
-		return err
-	}
-	options.Mounts = mounts
-
-	runerr := builder.Run(args, options)
-	if runerr != nil {
-		logrus.Debugf("error running %v in container %q: %v", args, builder.Container, runerr)
-	}
-	if runerr == nil {
-		shell := "/bin/sh -c"
-		if len(builder.Shell()) > 0 {
-			shell = strings.Join(builder.Shell(), " ")
-		}
-		conditionallyAddHistory(builder, c, "%s %s", shell, strings.Join(args, " "))
-		return builder.Save()
-	}
-	return runerr
+type globalFlags struct {
+	Debug             bool
+	LogLevel          string
+	Root              string
+	RunRoot           string
+	StorageDriver     string
+	RegistriesConf    string
+	RegistriesConfDir string
+	DefaultMountsFile string
+	StorageOpts       []string
+	UserNSUID         []string
+	UserNSGID         []string
 }
 
-func openBuilder(ctx context.Context, store storage.Store, name string) (builder *buildah.Builder, err error) {
-	if name != "" {
-		builder, err = buildah.OpenBuilder(store, name)
-		if os.IsNotExist(errors.Cause(err)) {
-			options := buildah.ImportOptions{
-				Container: name,
-			}
-			builder, err = buildah.ImportBuilder(ctx, store, options)
-		}
+func init() {
+	var (
+		opts               inspectResults
+		inspectDescription = "\n  Inspects a build container's or built image's configuration."
+	)
+
+	inspectCommand := &cobra.Command{
+		Use:   "inspect",
+		Short: "Inspect the configuration of a container or image",
+		Long:  inspectDescription,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return inspectCmd(cmd, args, opts)
+		},
+		Example: `buildah inspect containerID
+  buildah inspect --type image imageID
+  buildah inspect --format '{{.OCIv1.Config.Env}}' alpine`,
 	}
-	if err != nil {
-		return nil, errors.Wrapf(err, "error reading build container")
-	}
-	if builder == nil {
-		return nil, errors.Errorf("error finding build container")
-	}
-	return builder, nil
+	inspectCommand.SetUsageTemplate(UsageTemplate())
+
+	flags := inspectCommand.Flags()
+	flags.SetInterspersed(false)
+	flags.StringVarP(&opts.format, "format", "f", "", "use `format` as a Go template to format the output")
+	flags.StringVarP(&opts.inspectType, "type", "t", inspectTypeContainer, "look at the item of the specified `type` (container or image) and name")
+
+	rootCmd.AddCommand(inspectCommand)
 }
 
-/*
-func inspectCmd(args []string) error {
+func inspectCmd(c *cobra.Command, args []string, iopts inspectResults) error {
 	var builder *buildah.Builder
 
 	if len(args) == 0 {
-		return errors.Errorf("image name must be specified")
+		return errors.Errorf("container or image name must be specified")
+	}
+	if err := buildahcli.VerifyFlagsArgsOrder(args); err != nil {
+		return err
 	}
 	if len(args) > 1 {
 		return errors.Errorf("too many arguments specified")
 	}
 
-	//systemContext := &types.SystemContext{
-	//	OSChoice: "linux",
-	//}
-	systemContext := &types.SystemContext{}
+	systemContext, err := parse.SystemContextFromOptions(c)
+	if err != nil {
+		return errors.Wrapf(err, "error building system context")
+	}
 
 	name := args[0]
 
-	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
+	store, err := getStore(c)
 	if err != nil {
 		return err
 	}
-	store, err := storage.GetStore(storeOptions)
-	if err != nil {
-		return err
-	}
-	defer func() {
-		if _, err := store.Shutdown(false); err != nil {
-			logrus.Error(err)
-			os.Exit(1)
+
+	ctx := getContext()
+
+	switch iopts.inspectType {
+	case inspectTypeContainer:
+		builder, err = openBuilder(ctx, store, name)
+		if err != nil {
+			if c.Flag("type").Changed {
+				return errors.Wrapf(err, "error reading build container %q", name)
+			}
+			builder, err = openImage(ctx, systemContext, store, name)
+			if err != nil {
+				return errors.Wrapf(err, "error reading build object %q", name)
+			}
 		}
-	}()
-
-	ctx := context.TODO()
-
-	builder.Run([]string{"inspect", args[0]}, buildah.RunOptions{Isolation: buildah.IsolationChroot})
-	builder, err = openImage(ctx, systemContext, store, name)
-	if err != nil {
-		return errors.Wrapf(err, "error reading image %q", name)
+	case inspectTypeImage:
+		builder, err = openImage(ctx, systemContext, store, name)
+		if err != nil {
+			return errors.Wrapf(err, "error reading image %q", name)
+		}
+	default:
+		return errors.Errorf("the only recognized types are %q and %q", inspectTypeContainer, inspectTypeImage)
 	}
 	out := buildah.GetBuildInfo(builder)
+	if iopts.format != "" {
+		format := iopts.format
+		if matched, err := regexp.MatchString("{{.*}}", format); err != nil {
+			return errors.Wrapf(err, "error validating format provided: %s", format)
+		} else if !matched {
+			return errors.Errorf("error invalid format provided: %s", format)
+		}
+		t, err := template.New("format").Parse(format)
+		if err != nil {
+			return errors.Wrapf(err, "Template parsing error")
+		}
+		if err = t.Execute(os.Stdout, out); err != nil {
+			return err
+		}
+		if terminal.IsTerminal(int(os.Stdout.Fd())) {
+			fmt.Println()
+		}
+		return nil
+	}
+
 	enc := json.NewEncoder(os.Stdout)
 	enc.SetIndent("", "    ")
 	if terminal.IsTerminal(int(os.Stdout.Fd())) {
@@ -188,86 +165,35 @@ func inspectCmd(args []string) error {
 	return enc.Encode(out)
 }
 
-func openImage(ctx context.Context, sc *types.SystemContext, store storage.Store, name string) (builder *buildah.Builder, err error) {
-	options := buildah.ImportFromImageOptions{
-		Image:         name,
-		SystemContext: sc,
-	}
-	builder, err = buildah.ImportBuilderFromImage(ctx, store, options)
-	if err != nil {
-		return nil, errors.Wrapf(err, "error reading image")
-	}
-	if builder == nil {
-		return nil, errors.Errorf("error mocking up build configuration")
-	}
-	return builder, nil
-}
-*/
-// podman logic
-// issues with overlay mounting requirement within a pod
-// test product type/version aggregation from pod image lookup
-/*
-func imageLookup(args []string) (retErr error) {
-	// ERRO[0000] error opening "/var/lib/containers/storage/storage.lock": permission denied
-	// https://github.com/containers/storage/blob/ed28f2457e2f57cb3d3f2f4029a85f72b35370ab/store.go#L656-L664
-	storeOptions, err := storage.DefaultStoreOptionsAutoDetectUID()
+func before(cmd *cobra.Command) error {
+	strLvl, err := cmd.Flags().GetString(logLevel)
 	if err != nil {
 		return err
 	}
-	println("graphroot is " + storeOptions.GraphRoot)
-	println("graphdriver is " + storeOptions.GraphDriverName)
-	ir, err := image.NewImageRuntimeFromOptions(storeOptions)
+	logrusLvl, err := logrus.ParseLevel(strLvl)
 	if err != nil {
-		return err
+		return errors.Wrapf(err, "unable to parse log level")
 	}
-	for _, imgName := range args {
-		img, err := ir.NewFromLocal(imgName)
-		if err != nil {
-			return err
-		}
-		println()
-		println(img.InputName)
-		for _, name := range img.Names() {
-			println(name)
-		}
+	logrus.SetLevel(logrusLvl)
+	if globalFlagResults.Debug {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
 
-		ctx := context.Background()
-		ctx, cancel := context.WithTimeout(ctx, time.Duration(5)*time.Second)
-		defer cancel()
-		// get inspect image data
-		imgData, err := img.Inspect(ctx)
-		if err != nil {
-			return err
-		}
-		println(imgData.ID)
-		if imgData.Labels != nil {
-			println("IMAGE LABELS:")
-			for key, val := range imgData.Labels {
-				if strings.Contains(key, "org.jboss.") {
-					println(key + "=" + val)
-				}
-			}
-			for key, val := range imgData.Labels {
-				if strings.Contains(key, "com.redhat.") {
-					println(key + "=" + val)
-				}
-			}
-		}
+	switch cmd.Use {
+	case "", "help", "version", "mount":
+		return nil
 	}
-	println()
-	return retErr
+	unshare.MaybeReexecUsingUserNamespace(false)
+	return nil
 }
-*/
 
-func conditionallyAddHistory(builder *buildah.Builder, c *cobra.Command, createdByFmt string, args ...interface{}) {
-	history := buildahcli.DefaultHistory()
-	if c.Flag("add-history").Changed {
-		history, _ = c.Flags().GetBool("add-history")
+func after(cmd *cobra.Command) error {
+	if needToShutdownStore {
+		store, err := getStore(cmd)
+		if err != nil {
+			return err
+		}
+		_, _ = store.Shutdown(false)
 	}
-	if history {
-		now := time.Now().UTC()
-		created := &now
-		createdBy := fmt.Sprintf(createdByFmt, args...)
-		builder.AddPrependedEmptyLayer(created, createdBy, "", "")
-	}
+	return nil
 }
