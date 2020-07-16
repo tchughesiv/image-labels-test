@@ -32,8 +32,8 @@ spec:
         - mountPath: /var/lib/shared
           name: lib
           readOnly: true
-        - mountPath: /var/lib/containers
-          name: emptyrun
+        #- mountPath: /var/lib/containers
+        #  name: emptyrun
         #- mountPath: /var/lib/containers/storage
         #  name: lib
         #  readOnly: true
