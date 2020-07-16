@@ -3,7 +3,9 @@
 ```shell
 make
 make build
-image-labels-test inspect registry.redhat.io/rhpam-7/rhpam-kieserver-rhel8:7.7.1
+
+image-labels-test inspect registry.redhat.io/amq7/amq-broker-lts-rhel7-operator@sha256:0414ea9cb57b7c018556414be501901bc4a6fc44b37fbef16d08db8ae658e20a
+image-labels-test inspect ubi8
 ```
 
 deploy to openshift/k8s
