@@ -6,7 +6,7 @@ RUN useradd build && yum -y update --security --sec-severity=Important --sec-sev
         rm -rf /var/cache /var/log/yum.*
 
 # Adjust storage.conf to enable Fuse storage.
-# RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^# mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
+RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^# mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
 
 # Set up environment variables to note that this is
 # not starting with usernamespace and default to
