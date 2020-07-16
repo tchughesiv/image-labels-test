@@ -63,6 +63,8 @@ func init() {
 		logrus.Errorf(err.Error())
 		os.Exit(1)
 	}
+	// add overlay driver options
+	// storageOptions.GraphDriverOptions = []string{"overlay.imagestore=/var/lib/shared", "overlay.mount_program=/usr/bin/fuse-overlayfs", "mountopt=nodev,fsync=0"}
 
 	if len(storageOptions.GraphDriverOptions) > 0 {
 		optionSlice := storageOptions.GraphDriverOptions[:]
