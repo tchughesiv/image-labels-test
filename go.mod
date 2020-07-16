@@ -20,7 +20,6 @@ require (
 	github.com/spf13/cobra v0.0.7
 	github.com/spf13/pflag v1.0.5
 	go.etcd.io/bbolt v1.3.5 // indirect
-	golang.org/x/crypto v0.0.0-20200423211502-4bdfaf469ed5
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	k8s.io/api v0.18.4 // indirect
 )
